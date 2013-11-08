@@ -1,0 +1,7 @@
+version = "0.9.9"
+description = "IO memory page handling library"
+archive(byte) = "mirage-clock.cma"
+archive(byte, plugin) = "mirage-clock.cma"
+archive(native) = "mirage-clock.cmxa"
+archive(native, plugin) = "mirage-clock.cmxs"
+exists_if = "mirage-clock.cma"

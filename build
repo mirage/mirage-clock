@@ -1,0 +1,16 @@
+#!/bin/sh
+
+OS=${OS:-unix}
+OCAMLBUILD=ocamlbuild
+
+ocamlbuild -use-ocamlfind -pkg cstruct ${OS}/mirage-clock.cma ${OS}/mirage-clock.cmxa ${OS}/mirage-clock.cmxs
+
+B=_build/${OS}
+if [ "$1" = "true" ]; then
+  ocamlfind remove mirage-clock || true
+  ocamlfind install mirage-clock ${OS}/META \
+    $B/clock.cmo $B/clock.cmi $B/mirage-clock.cma \
+    $B/mirage-clock.a $B/clock.cmx $B/mirage-clock.cmxa $B/mirage-clock.cmxs
+elif [ "$1" = "test" ]; then
+  ocamlbuild -use-ocamlfind -pkg cstruct -pkg mirage-types -I ${OS} lib_test/portable.cmo
+fi
