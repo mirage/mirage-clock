@@ -1,2 +1,5 @@
+1.0.0 (trunk):
+* Remove unnecessary cstruct dependency.
+
 0.9.9 (05-Dec-2013):
 * Initial public release, based on mirage/mirage-platform#0.9.8
