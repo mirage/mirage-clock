@@ -3,7 +3,7 @@
 OS=${OS:-unix}
 OCAMLBUILD=ocamlbuild
 
-ocamlbuild -use-ocamlfind -pkg cstruct ${OS}/mirage-clock.cma ${OS}/mirage-clock.cmxa ${OS}/mirage-clock.cmxs
+ocamlbuild -use-ocamlfind ${OS}/mirage-clock.cma ${OS}/mirage-clock.cmxa ${OS}/mirage-clock.cmxs
 
 B=_build/${OS}
 if [ "$1" = "true" ]; then
