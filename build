@@ -7,8 +7,8 @@ ocamlbuild -use-ocamlfind ${OS}/mirage-clock.cma ${OS}/mirage-clock.cmxa ${OS}/m
 
 B=_build/${OS}
 if [ "$1" = "true" ]; then
-  ocamlfind remove mirage-clock || true
-  ocamlfind install mirage-clock ${OS}/META \
+  ocamlfind remove mirage-clock-${OS} || true
+  ocamlfind install mirage-clock-${OS} ${OS}/META \
     $B/clock.cmo $B/clock.cmi $B/mirage-clock.cma \
     $B/mirage-clock.a $B/clock.cmx $B/mirage-clock.cmxa $B/mirage-clock.cmxs
 elif [ "$1" = "test" ]; then
