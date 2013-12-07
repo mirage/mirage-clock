@@ -1,5 +1,5 @@
 version = "0.9.9"
-description = "IO memory page handling library"
+description = "Clock implementation compatible with Mirage"
 archive(byte) = "mirage-clock.cma"
 archive(byte, plugin) = "mirage-clock.cma"
 archive(native) = "mirage-clock.cmxa"
