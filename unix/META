@@ -1,4 +1,4 @@
-version = "0.9.9"
+version = "1.0.0"
 requires = "unix"
 description = "Clock implementation compatible with Mirage"
 archive(byte) = "mirage-clock.cma"

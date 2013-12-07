@@ -1,4 +1,4 @@
-version = "0.9.9"
+version = "1.0.0"
 description = "Clock implementation compatible with Mirage"
 archive(byte) = "mirage-clock.cma"
 archive(byte, plugin) = "mirage-clock.cma"
