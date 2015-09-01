@@ -105,3 +105,22 @@ let gmtime u =
     tm_hour = hh; tm_min = mm; tm_sec = ss;
     tm_wday = week_day; tm_yday = year_day - 1;
     tm_isdst = false; }
+
+let min_int_float = float min_int
+let max_int_float = float max_int
+let ps_count_in_s = 1_000_000_000_000L
+
+(* Based on Ptime.of_float_s *)
+let now_d_ps () =
+  let secs = time () in
+  if secs <> secs then failwith "unix_gettimeofday returned NaN" else
+  let days = floor (secs /. 86_400.) in
+  if days < min_int_float || days > max_int_float then failwith
+    "unix_gettimeofday returned number of days outside int range" else
+  let rem_s = mod_float secs 86_400. in
+  let rem_s = if rem_s < 0. then 86_400. +. rem_s else rem_s in
+  if rem_s >= 86_400. then (int_of_float days + 1, 0L) else
+  let frac_s, rem_s = modf rem_s in
+  let rem_ps = Int64.(mul (of_float rem_s) ps_count_in_s) in
+  let frac_ps = Int64.(of_float (frac_s *. 1e12)) in
+  (int_of_float days, (Int64.add rem_ps frac_ps))
