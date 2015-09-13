@@ -52,3 +52,8 @@ let now_d_ps () =
   let rem_ps = Int64.(mul (of_float rem_s) ps_count_in_s) in
   let frac_ps = Int64.(of_float (frac_s *. 1e12)) in
   (int_of_float days, (Int64.add rem_ps frac_ps))
+
+let current_tz_offset_s () =
+  let ts_utc = Unix.gettimeofday () in
+  let (ts_local, _) = Unix.gmtime ts_utc |> Unix.mktime in
+  int_of_float (ts_utc -. ts_local)
