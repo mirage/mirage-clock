@@ -44,3 +44,7 @@ val now_d_ps : unit -> int * int64
     at [d] * 86'400e12 + [ps] POSIX picoseconds from the epoch
     1970-01-01 00:00:00 UTC. [ps] is in the range
     \[[0];[86_399_999_999_999_999L]\]. *)
+
+val current_tz_offset_s : unit -> int
+(** [current_tz_offset_s ()] is the clock's current local time zone
+    offset to UTC in seconds. *)

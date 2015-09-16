@@ -124,3 +124,5 @@ let now_d_ps () =
   let rem_ps = Int64.(mul (of_float rem_s) ps_count_in_s) in
   let frac_ps = Int64.(of_float (frac_s *. 1e12)) in
   (int_of_float days, (Int64.add rem_ps frac_ps))
+
+let current_tz_offset_s () = 0
