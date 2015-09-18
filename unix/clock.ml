@@ -57,3 +57,5 @@ let current_tz_offset_s () =
   let ts_utc = Unix.gettimeofday () in
   let (ts_local, _) = Unix.gmtime ts_utc |> Unix.mktime in
   int_of_float (ts_utc -. ts_local)
+
+let period_d_ps () = None

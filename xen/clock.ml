@@ -126,3 +126,5 @@ let now_d_ps () =
   (int_of_float days, (Int64.add rem_ps frac_ps))
 
 let current_tz_offset_s () = 0
+
+let period_d_ps () = None
