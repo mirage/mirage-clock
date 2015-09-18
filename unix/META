@@ -1,8 +1,11 @@
-version = "1.0.0"
-requires = "unix"
-description = "Clock implementation compatible with Mirage"
-archive(byte) = "mirage-clock.cma"
-archive(byte, plugin) = "mirage-clock.cma"
-archive(native) = "mirage-clock.cmxa"
-archive(native, plugin) = "mirage-clock.cmxs"
-exists_if = "mirage-clock.cma"
+# OASIS_START
+# DO NOT EDIT (digest: 73590948837c43c6c5781e7fc6ee3a6d)
+version = "1.1.0"
+description = "Posix clocks for Mirage"
+archive(byte) = "mirage-clock-unix.cma"
+archive(byte, plugin) = "mirage-clock-unix.cma"
+archive(native) = "mirage-clock-unix.cmxa"
+archive(native, plugin) = "mirage-clock-unix.cmxs"
+exists_if = "mirage-clock-unix.cma"
+# OASIS_STOP
+

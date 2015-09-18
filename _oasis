@@ -1,0 +1,30 @@
+OASISFormat:  0.4
+Name:         mirage-clock
+Version:      1.1.0
+Synopsis:     Posix clocks for Mirage
+Authors:      Anil Madhavapeddy
+License:      ISC
+Plugins:      META (0.4), DevFiles (0.4)
+BuildTools:   ocamlbuild
+
+Flag unix
+  Description:  true to build Unix library
+  Default:      true
+
+Flag xen
+  Description:  true to build Xen library
+  Default:      false
+
+Library "mirage-clock-unix"
+  Build$:         flag(unix)
+  CompiledObject: best
+  Path:           unix
+  Modules:        Clock
+  Findlibname:    mirage-clock-unix
+
+Library "mirage-clock-xen"
+  Build$:         flag(xen)
+  CompiledObject: best
+  Path:           xen
+  Modules:        Clock
+  Findlibname:    mirage-clock-xen
