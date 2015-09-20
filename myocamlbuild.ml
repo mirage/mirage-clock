@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: 93fc6aaf7a205f8a4f2fb4f575a2932e) *)
+(* DO NOT EDIT (digest: 2cf2a1d2911eedb2f228e81a7ead92f4) *)
 module OASISGettext = struct
 (* # 22 "src/oasis/OASISGettext.ml" *)
 
@@ -612,8 +612,23 @@ let package_default =
           ("mirage-clock-unix", ["unix"], []);
           ("mirage-clock-xen", ["xen"], [])
        ];
-     lib_c = [];
-     flags = [];
+     lib_c = [("mirage-clock-unix", "unix", [])];
+     flags =
+       [
+          (["oasis_library_mirage_clock_unix_ccopt"; "compile"],
+            [
+               (OASISExpr.EBool true,
+                 S
+                   [
+                      A "-ccopt";
+                      A "-O2";
+                      A "-ccopt";
+                      A "-g";
+                      A "-ccopt";
+                      A "-Wall"
+                   ])
+            ])
+       ];
      includes = [("lib_test", ["unix"])]
   }
   ;;
@@ -622,6 +637,6 @@ let conf = {MyOCamlbuildFindlib.no_automatic_syntax = false}
 
 let dispatch_default = MyOCamlbuildBase.dispatch_default conf package_default;;
 
-# 626 "myocamlbuild.ml"
+# 641 "myocamlbuild.ml"
 (* OASIS_STOP *)
 Ocamlbuild_plugin.dispatch dispatch_default;;

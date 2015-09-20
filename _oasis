@@ -20,6 +20,8 @@ Library "mirage-clock-unix"
   CompiledObject: best
   Path:           unix
   Modules:        Clock
+  CSources:       clock_stubs.c
+  CCOpt:          -O2 -g -Wall
   Findlibname:    mirage-clock-unix
 
 Library "mirage-clock-xen"

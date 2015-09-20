@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: cb1ddef679ed206ddc6c141f325386cb)
+# DO NOT EDIT (digest: 4c01376b96941e051b308a80c78c8a05)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -16,6 +16,9 @@ true: annot, bin_annot
 "_darcs": not_hygienic
 # Library mirage-clock-unix
 "unix/mirage-clock-unix.cmxs": use_mirage-clock-unix
+<unix/*.ml{,i,y}>: oasis_library_mirage_clock_unix_ccopt
+"unix/clock_stubs.c": oasis_library_mirage_clock_unix_ccopt
+<unix/mirage-clock-unix.{cma,cmxa}>: use_libmirage-clock-unix_stubs
 # Library mirage-clock-xen
 "xen/mirage-clock-xen.cmxs": use_mirage-clock-xen
 # Executable portable
