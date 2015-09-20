@@ -28,3 +28,15 @@ Library "mirage-clock-xen"
   Path:           xen
   Modules:        Clock
   Findlibname:    mirage-clock-xen
+
+Executable "portable"
+  Build$:         flag(unix)
+  CompiledObject: best
+  Install:        false
+  Path:           lib_test
+  MainIs:         portable.ml
+  BuildDepends:   mirage-clock-unix, cstruct, mirage-types
+
+Test "portable-test"
+  Command:          $portable
+  WorkingDirectory: lib_test
