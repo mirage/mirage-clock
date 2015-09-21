@@ -18,6 +18,7 @@
 #include <mach/clock.h>
 #include <mach/mach.h>
 
+//Error checking needed here
 CAMLprim value ocaml_clock_posix_period_ns (value unit)
 {
   clock_serv_t clock_service;
@@ -27,6 +28,20 @@ CAMLprim value ocaml_clock_posix_period_ns (value unit)
   clock_get_attributes(clock_service, CLOCK_GET_TIME_RES, (clock_attr_t)&ns, &count);
   mach_port_deallocate(mach_task_self(), clock_service);
 
-  return caml_copy_int64 (ns);
+  return caml_copy_int64 (ns); //cast uint64_t ?????
 }
+
+#elif defined(OCAML_MIRAGE_CLOCK_POSIX)
+
+#include <time.h>
+#include <stdint.h>
+
+CAMLprim value ocaml_clock_posix_period_ns (value unit)
+{
+  struct timespec clock_period;
+  if (clock_getres (CLOCK_REALTIME, &clock_period)) return caml_copy_int64 (0L);
+  return caml_copy_int64 ((uint64_t) clock_period.tv_nsec);
+}
+#else
+  return caml_copy_int64 ((uint64_t) 0);
 #endif
