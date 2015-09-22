@@ -18,17 +18,16 @@
 #include <mach/clock.h>
 #include <mach/mach.h>
 
-//Error checking needed here
 CAMLprim value ocaml_clock_posix_period_ns (value unit)
 {
   clock_serv_t clock_service;
-  int ns;
+  int period_ns;
   mach_msg_type_number_t count;
-  host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &clock_service);
-  clock_get_attributes(clock_service, CLOCK_GET_TIME_RES, (clock_attr_t)&ns, &count);
+  if(host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &clock_service)) return caml_copy_int64 (0L);
+  if(clock_get_attributes(clock_service, CLOCK_GET_TIME_RES, (clock_attr_t)&period_ns, &count)) return caml_copy_int64 (0L);
   mach_port_deallocate(mach_task_self(), clock_service);
 
-  return caml_copy_int64 (ns); //cast uint64_t ?????
+  return caml_copy_int64 ((uint64_t) period_ns);
 }
 
 #elif defined(OCAML_MIRAGE_CLOCK_POSIX)
@@ -43,5 +42,5 @@ CAMLprim value ocaml_clock_posix_period_ns (value unit)
   return caml_copy_int64 ((uint64_t) clock_period.tv_nsec);
 }
 #else
-  return caml_copy_int64 ((uint64_t) 0);
+  return caml_copy_int64 (0L);
 #endif
