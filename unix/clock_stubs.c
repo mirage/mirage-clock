@@ -65,5 +65,21 @@ CAMLprim value ocaml_posix_clock_period_ns (value unit)
   return caml_copy_int64 ((uint64_t) clock_period.tv_nsec);
 }
 #else
+#warning Mirage PCLOCK - unsupported platform
+CAMLprim value ocaml_posix_clock_gettime_s_ns (value unit)
+{
+  CAMLparam1(unit);
+  CAMLlocal1(time_s_ns);
+  time_s_ns = caml_alloc(2, 0);
+
+  Store_field(time_s_ns, 0, Val_int(0));
+  Store_field(time_s_ns, 1, Val_long(0L));
+
+  CAMLreturn (time_s_ns);
+}
+
+CAMLprim value ocaml_posix_clock_period_ns (value unit)
+{
   return caml_copy_int64 (0L);
+}
 #endif
