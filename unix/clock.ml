@@ -51,9 +51,9 @@ let current_tz_offset_s () =
   let (ts_local, _) = Unix.gmtime ts_utc |> Unix.mktime in
   int_of_float (ts_utc -. ts_local)
 
-external clock_posix_period_ns : unit -> int64 = "ocaml_clock_posix_period_ns"
+external posix_clock_period_ns : unit -> int64 = "ocaml_posix_clock_period_ns"
 let period_d_ps () =
-  let period_ns = clock_posix_period_ns () in
+  let period_ns = posix_clock_period_ns () in
   match period_ns with
     | 0L -> None
     | ns -> Some (0, Int64.mul ns 1000L)

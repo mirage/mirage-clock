@@ -34,7 +34,7 @@ CAMLprim value ocaml_posix_clock_gettime_s_ns (value unit)
   CAMLreturn (time_s_ns);
 }
 
-CAMLprim value ocaml_clock_posix_period_ns (value unit)
+CAMLprim value ocaml_posix_clock_period_ns (value unit)
 {
   return caml_copy_int64 (1000L);
 }
@@ -58,7 +58,7 @@ CAMLprim value ocaml_posix_clock_gettime_s_ns (value unit)
   CAMLreturn (time_s_ns);
 }
 
-CAMLprim value ocaml_clock_posix_period_ns (value unit)
+CAMLprim value ocaml_posix_clock_period_ns (value unit)
 {
   struct timespec clock_period;
   if (clock_getres (CLOCK_REALTIME, &clock_period)) return caml_copy_int64 (0L);
