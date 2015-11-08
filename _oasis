@@ -19,7 +19,7 @@ Library "mirage-clock-unix"
   Build$:         flag(unix)
   CompiledObject: best
   Path:           unix
-  Modules:        Clock
+  Modules:        Clock, Pclock
   CSources:       clock_stubs.c
   CCOpt:          -O2 -g -Wall
   Findlibname:    mirage-clock-unix

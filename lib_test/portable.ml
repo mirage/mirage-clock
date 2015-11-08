@@ -1,4 +1,4 @@
-module C = Clock
+module C = Pclock
 
 let print_time () =
   let d, ps = C.now_d_ps () in

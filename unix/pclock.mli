@@ -1,3 +1,4 @@
+
 (*
  * Copyright (c) 2010-2011 Anil Madhavapeddy <anil@recoil.org>
  *
@@ -17,24 +18,17 @@
 (** Clock operations.
     Currently read-only to retrieve the time in various formats. *)
 
-type tm =
-  { tm_sec : int;               (** Seconds 0..60 *)
-    tm_min : int;               (** Minutes 0..59 *)
-    tm_hour : int;              (** Hours 0..23 *)
-    tm_mday : int;              (** Day of month 1..31 *)
-    tm_mon : int;               (** Month of year 0..11 *)
-    tm_year : int;              (** Year - 1900 *)
-    tm_wday : int;              (** Day of week (Sunday is 0) *)
-    tm_yday : int;              (** Day of year 0..365 *)
-    tm_isdst : bool;            (** Daylight time savings in effect *)
-  }
-(** The type representing wallclock time and calendar date. *)
+val now_d_ps : unit -> int * int64
+(** [now_d_ps ()] is [(d, ps)] representing the POSIX time occuring
+    at [d] * 86'400e12 + [ps] POSIX picoseconds from the epoch
+    1970-01-01 00:00:00 UTC. [ps] is in the range
+    \[[0];[86_399_999_999_999_999L]\]. *)
 
-val time : unit -> float
-(** Return the current time since 00:00:00 GMT, Jan. 1, 1970, in
-    seconds. *)
+val current_tz_offset_s : unit -> int
+(** [current_tz_offset_s ()] is the clock's current local time zone
+    offset to UTC in seconds. *)
 
-val gmtime : float -> tm
-(** Convert a time in seconds, as returned by {!Unix.time}, into a
-    date and a time. Assumes UTC (Coordinated Universal Time), also
-    known as GMT. *)
+val period_d_ps : unit -> (int * int64) option
+  (** [period_d_ps ()] is if available [Some (d, ps)] representing the
+      clock's picosecond period [d] * 86'400e12 + [ps]. [ps] is in the
+      range \[[0];[86_399_999_999_999_999L]\]. *)

@@ -1,1 +1,1 @@
-module C : V1.CLOCK
+module C : V1.PCLOCK
