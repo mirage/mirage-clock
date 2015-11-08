@@ -36,7 +36,7 @@ CAMLprim value ocaml_posix_clock_gettime_s_ns (value unit)
 
 CAMLprim value ocaml_posix_clock_period_ns (value unit)
 {
-  return caml_copy_int64 (1000L);
+  return caml_copy_int64 (0L);
 }
 
 #elif defined(OCAML_MIRAGE_CLOCK_POSIX)
