@@ -30,9 +30,10 @@ let now_d_ps () =
 let current_tz_offset_s () =
   let ts_utc = Unix.gettimeofday () in
   let (ts_local, _) = Unix.gmtime ts_utc |> Unix.mktime in
-  (int_of_float ts_utc) - (int_of_float ts_local)
+  Some ((int_of_float ts_utc) - (int_of_float ts_local))
 
 external posix_clock_period_ns : unit -> int64 = "ocaml_posix_clock_period_ns"
+
 let period_d_ps () =
   let period_ns = posix_clock_period_ns () in
   match period_ns with

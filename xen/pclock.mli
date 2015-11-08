@@ -4,7 +4,7 @@ val now_d_ps : unit -> int * int64
     1970-01-01 00:00:00 UTC. [ps] is in the range
     \[[0];[86_399_999_999_999_999L]\]. *)
 
-val current_tz_offset_s : unit -> int
+val current_tz_offset_s : unit -> int option
 (** [current_tz_offset_s ()] is the clock's current local time zone
     offset to UTC in seconds. *)
 

@@ -19,7 +19,7 @@ let now_d_ps () =
   let frac_ps = Int64.(of_float (frac_s *. 1e12)) in
   (int_of_float days, (Int64.add rem_ps frac_ps))
 
-let current_tz_offset_s () = 0
+let current_tz_offset_s () = None
 
 (* According to
  * https://github.com/mirage/mini-os/blob/edfd5aae6ec5ba7d0a8834a3e9dfe5e69424150a/arch/x86/time.c#L194
