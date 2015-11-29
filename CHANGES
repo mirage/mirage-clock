@@ -1,3 +1,6 @@
+
+* xen: pure OCaml implementation of `Clock.gmtime`. 
+
 1.0.0 (07-Dec-2013):
 * Remove unnecessary cstruct dependency.
 * Install ocamlfind packages as `mirage-clock-xen` and `mirage-clock-unix`.
