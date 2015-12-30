@@ -1,6 +1,25 @@
 language: c
-script: bash -ex .travis-ci.sh
+install:
+  - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-opam.sh
+script: bash -ex .travis-opam.sh
+sudo: false
+addons:
+  apt:
+    sources:
+    - avsm
+    packages:
+    - ocaml
+    - ocaml-base
+    - ocaml-native-compilers
+    - ocaml-compiler-libs
+    - ocaml-interp
+    - ocaml-base-nox
+    - ocaml-nox
+    - camlp4
+    - camlp4-extra
+    - time
 env:
-  - OCAML_VERSION=4.01.0 OPAM_VERSION=1.1.0
-  - OCAML_VERSION=4.00.1 OPAM_VERSION=1.1.0
-  - OCAML_VERSION=3.12.1 OPAM_VERSION=1.1.0
+  global:
+    - PACKAGE="mirage-clock-xen"
+    - OCAML_VERSION=4.01
+    - FORK_USER=talex5 FORK_BRANCH=containers2 OPAMYES=true OPAM_SWITCH=system OPAM_INIT=true
