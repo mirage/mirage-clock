@@ -19,6 +19,9 @@
 #include <sys/time.h>
 #include <mach/clock.h>
 #include <mach/mach.h>
+#include <mach/mach_time.h>
+
+/* PCLOCK */
 
 CAMLprim value ocaml_posix_clock_gettime_s_ns (value unit)
 {
@@ -39,10 +42,29 @@ CAMLprim value ocaml_posix_clock_period_ns (value unit)
   return caml_copy_int64 (0L);
 }
 
+/* MCLOCK */
+
+CAMLprim value ocaml_monotonic_clock_elapsed_ns (value unit)
+{
+  static uint64_t start = 0L;
+  static mach_timebase_info_data_t scale;
+  if (start == 0L)
+  {
+    start = mach_absolute_time ();
+    mach_timebase_info (&scale);
+    if (scale.denom == 0) { scale.numer = 0; scale.denom = 1; }
+  }
+
+  uint64_t now = mach_absolute_time ();
+  return caml_copy_int64 (((now - start) * scale.numer) / scale.denom);
+}
+
 #elif defined(OCAML_MIRAGE_CLOCK_POSIX)
 
 #include <time.h>
 #include <stdint.h>
+
+/* PCLOCK */
 
 CAMLprim value ocaml_posix_clock_gettime_s_ns (value unit)
 {
@@ -64,6 +86,23 @@ CAMLprim value ocaml_posix_clock_period_ns (value unit)
   if (clock_getres (CLOCK_REALTIME, &clock_period)) return caml_copy_int64 (0L);
   return caml_copy_int64 ((uint64_t) clock_period.tv_nsec);
 }
+
+/* MCLOCK */
+
+CAMLprim value ocaml_monotonic_clock_elapsed_ns (value unit)
+{
+  static struct timespec start = { 0, 0 };
+  if (start.tv_sec == 0)
+  {
+    if (clock_gettime (CLOCK_MONOTONIC, &start)) return caml_copy_int64 (0L);
+  }
+  struct timespec now;
+  if (clock_gettime (CLOCK_MONOTONIC, &now)) return caml_copy_int64 (0L);
+  return caml_copy_int64 ((uint64_t)(now.tv_sec - start.tv_sec) *
+                          (uint64_t)1000000000 +
+                          (uint64_t)(now.tv_nsec - start.tv_nsec));
+}
+
 #else
 #warning Mirage PCLOCK - unsupported platform
 CAMLprim value ocaml_posix_clock_gettime_s_ns (value unit)

@@ -19,7 +19,7 @@ Library "mirage-clock-unix"
   Build$:         flag(unix)
   CompiledObject: best
   Path:           unix
-  Modules:        Clock, Pclock
+  Modules:        Clock, Pclock, Mclock
   CSources:       clock_stubs.c
   CCOpt:          -O2 -g -Wall
   Findlibname:    mirage-clock-unix
@@ -28,7 +28,7 @@ Library "mirage-clock-xen"
   Build$:         flag(xen)
   CompiledObject: best
   Path:           xen
-  Modules:        Clock
+  Modules:        Clock, Pclock, Mclock
   Findlibname:    mirage-clock-xen
 
 Executable "portable"
