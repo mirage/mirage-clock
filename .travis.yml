@@ -20,6 +20,8 @@ addons:
     - time
 env:
   global:
-    - PACKAGE="mirage-clock-xen"
     - OCAML_VERSION=4.01
     - FORK_USER=talex5 FORK_BRANCH=containers2 OPAMYES=true OPAM_SWITCH=system OPAM_INIT=true
+  matrix:
+    - PACKAGE="mirage-clock-xen"
+    - PACKAGE="mirage-clock-unix"
