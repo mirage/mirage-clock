@@ -3,6 +3,7 @@ authors: "The MirageOS team"
 maintainer: "anil@recoil.org"
 homepage: "https://github.com/mirage/mirage-clock"
 bug-reports: "https://github.com/mirage/mirage-clock/issues"
+license: "ISC"
 tags: [
   "org:mirage"
   "org:xapi-project"
