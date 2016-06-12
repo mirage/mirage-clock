@@ -28,9 +28,23 @@ let now_d_ps () =
   (days, (Int64.add rem_ps frac_ps))
 
 let current_tz_offset_s () =
-  let ts_utc = Unix.gettimeofday () in
-  let (ts_local, _) = Unix.gmtime ts_utc |> Unix.mktime in
-  Some ((int_of_float ts_utc) - (int_of_float ts_local))
+  let now = Unix.gettimeofday () in
+  let utc = Unix.gmtime now in
+  let local = Unix.localtime now in
+  let d_day = local.Unix.tm_yday - utc.Unix.tm_yday in
+  let d_hour = local.Unix.tm_hour - utc.Unix.tm_hour in
+  let d_min = d_hour * 60 + (local.Unix.tm_min - utc.Unix.tm_min) in
+  let min_per_day = 24 * 60 in
+  let d_min =
+    match d_day with
+      | 0 -> d_min (* same day *)
+      (* day wrapped *)
+      | 1 -> d_min + min_per_day
+      | -1 -> d_min - min_per_day
+      (* year wrapped *)
+      | d_day -> if d_min < -1 then d_min + min_per_day else d_min - min_per_day
+    in
+  Some (d_min * 60)
 
 external posix_clock_period_ns : unit -> int64 = "ocaml_posix_clock_period_ns"
 
