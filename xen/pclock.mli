@@ -14,8 +14,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
-(** Clock operations.
-    Currently read-only to retrieve the time in various formats. *)
+(** {1 POSIX clock}
+
+    Clock counting time since the Unix epoch. Subject to adjustment by e.g. NTP. *)
+
+include V1.PCLOCK
 
 val now_d_ps : unit -> int * int64
 (** [now_d_ps ()] is [(d, ps)] representing the POSIX time occuring

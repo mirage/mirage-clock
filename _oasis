@@ -23,6 +23,7 @@ Library "mirage-clock-unix"
   CSources:       clock_stubs.c
   CCOpt:          -O2 -g -Wall
   Findlibname:    mirage-clock-unix
+  BuildDepends:   mirage-types
 
 Library "mirage-clock-xen"
   Build$:         flag(xen)
@@ -30,6 +31,7 @@ Library "mirage-clock-xen"
   Path:           xen
   Modules:        Clock, Pclock, Mclock
   Findlibname:    mirage-clock-xen
+  BuildDepends:   mirage-types
 
 Executable "portable"
   Build$:         flag(unix)

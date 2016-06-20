@@ -14,5 +14,12 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
+(** {1 Monotonic clock}
+
+    Clock returning monotonic time since an arbitrary point. To be used for eg.
+    profiling. *)
+
+include V1.MCLOCK
+
 val elapsed_ns : unit -> int64
 val period_ns : unit -> int64 option
