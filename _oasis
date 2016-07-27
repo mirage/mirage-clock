@@ -23,7 +23,7 @@ Library "mirage-clock-unix"
   CSources:       clock_stubs.c
   CCOpt:          -O2 -g -Wall
   Findlibname:    mirage-clock-unix
-  BuildDepends:   mirage-types
+  BuildDepends:   mirage-types, lwt
 
 Library "mirage-clock-xen"
   Build$:         flag(xen)
@@ -39,7 +39,7 @@ Executable "portable"
   Install:        false
   Path:           lib_test
   MainIs:         portable.ml
-  BuildDepends:   mirage-clock-unix, cstruct, mirage-types
+  BuildDepends:   mirage-clock-unix, cstruct, mirage-types, lwt.unix
 
 Test "portable-test"
   Command:          $portable

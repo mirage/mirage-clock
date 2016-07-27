@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 18fc54a17d287ef21746fd3ab54ea843)
+# DO NOT EDIT (digest: 50e3721c7ecf0608a819c188f5b7bcfd)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -19,16 +19,22 @@ true: annot, bin_annot
 <unix/*.ml{,i,y}>: oasis_library_mirage_clock_unix_ccopt
 "unix/clock_stubs.c": oasis_library_mirage_clock_unix_ccopt
 <unix/mirage-clock-unix.{cma,cmxa}>: use_libmirage-clock-unix_stubs
+<unix/*.ml{,i,y}>: pkg_lwt
 <unix/*.ml{,i,y}>: pkg_mirage-types
+"unix/clock_stubs.c": pkg_lwt
 "unix/clock_stubs.c": pkg_mirage-types
 # Library mirage-clock-xen
 "xen/mirage-clock-xen.cmxs": use_mirage-clock-xen
 <xen/*.ml{,i,y}>: pkg_mirage-types
 # Executable portable
 <lib_test/portable.{native,byte}>: pkg_cstruct
+<lib_test/portable.{native,byte}>: pkg_lwt
+<lib_test/portable.{native,byte}>: pkg_lwt.unix
 <lib_test/portable.{native,byte}>: pkg_mirage-types
 <lib_test/portable.{native,byte}>: use_mirage-clock-unix
 <lib_test/*.ml{,i,y}>: pkg_cstruct
+<lib_test/*.ml{,i,y}>: pkg_lwt
+<lib_test/*.ml{,i,y}>: pkg_lwt.unix
 <lib_test/*.ml{,i,y}>: pkg_mirage-types
 <lib_test/*.ml{,i,y}>: use_mirage-clock-unix
 # OASIS_STOP

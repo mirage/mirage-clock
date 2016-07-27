@@ -15,11 +15,19 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
+type t = unit
+type id = string
+type 'a io = 'a Lwt.t
+type error = unit
+
 let ps_count_in_s = 1_000_000_000_000L
 
 external posix_clock_gettime_s_ns : unit -> int * int = "ocaml_posix_clock_gettime_s_ns"
 
-let now_d_ps () =
+let connect _ = Lwt.return (`Ok ())
+let disconnect _t = Lwt.return ()
+
+let now_d_ps t =
   let secs, ns = posix_clock_gettime_s_ns () in
   let days = secs / 86_400 in
   let rem_s = secs mod 86_400 in
@@ -27,7 +35,7 @@ let now_d_ps () =
   let rem_ps = Int64.(mul (of_int rem_s) ps_count_in_s) in
   (days, (Int64.add rem_ps frac_ps))
 
-let current_tz_offset_s () =
+let current_tz_offset_s t =
   let now = Unix.gettimeofday () in
   let utc = Unix.gmtime now in
   let local = Unix.localtime now in
@@ -48,7 +56,7 @@ let current_tz_offset_s () =
 
 external posix_clock_period_ns : unit -> int64 = "ocaml_posix_clock_period_ns"
 
-let period_d_ps () =
+let period_d_ps t =
   let period_ns = posix_clock_period_ns () in
   match period_ns with
     | 0L -> None
