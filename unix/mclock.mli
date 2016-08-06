@@ -19,7 +19,7 @@
     Clock returning monotonic time since an arbitrary point. To be used for eg.
     profiling. *)
 
-include V1.MCLOCK
+include V1_LWT.MCLOCK
+  with type 'a io = 'a Lwt.t
 
-val elapsed_ns : unit -> int64
-val period_ns : unit -> int64 option
+val connect : unit -> [`Ok of t | `Error of error] io

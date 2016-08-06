@@ -15,19 +15,24 @@ let print_period c = match Pclock.period_d_ps c with
 let print_mtime c =
   Printf.printf "Monotonic clock says: %Ld nanoseconds\n" (Mclock.elapsed_ns c)
 
-let main () =
-  let mclock = Mclock.connect () in
-  Pclock.connect () >>= function
-  `Ok clock -> (
-    print_mtime mclock;
-    print_time clock;
-    print_time clock;
-    print_time clock;
-    print_offset clock;
-    print_period clock;
-    print_mtime mclock;
-    Lwt.return_unit
-  )
-  | `Error _ -> Lwt.return_unit
+let print_period_mono c = match Mclock.period_ns c with
+  | Some ns -> Printf.printf "The monotonic clock period is: %Ld nanoseconds\n" ns
+  | None -> Printf.printf "Monotonic clock period unavailable\n"
 
+let main () =
+  Mclock.connect () >>= function
+  `Ok mclock -> (Pclock.connect () >>= function
+    `Ok clock -> (
+      print_mtime mclock;
+      print_time clock;
+      print_time clock;
+      print_time clock;
+      print_offset clock;
+      print_period clock;
+      print_mtime mclock;
+      print_period_mono mclock;
+      Lwt.return_unit
+    )
+    | `Error _ -> Lwt.return_unit)
+  | `Error _ -> Lwt.return_unit
 let _ = Lwt_main.run (main ())

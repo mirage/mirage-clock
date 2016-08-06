@@ -14,5 +14,13 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
+type t = unit
+type id = string
+type 'a io = 'a Lwt.t
+type error = unit
+
+let connect _ = Lwt.return (`Ok ())
+let disconnect _t = Lwt.return ()
+
 external elapsed_ns : unit -> int64 = "caml_get_monotonic_time"
 let period_ns () = None
