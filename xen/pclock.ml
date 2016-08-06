@@ -14,14 +14,22 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
+type t = unit
+type id = string
+type 'a io = 'a Lwt.t
+type error = unit
+
 external time : unit -> float = "unix_gettimeofday"
 
 let min_int_float = float min_int
 let max_int_float = float max_int
 let ps_count_in_s = 1_000_000_000_000L
 
+let connect _ = Lwt.return (`Ok ())
+let disconnect _t = Lwt.return ()
+
 (* Based on Ptime.of_float_s *)
-let now_d_ps () =
+let now_d_ps t =
   let secs = time () in
   if secs <> secs then failwith "unix_gettimeofday returned NaN" else
   let days = floor (secs /. 86_400.) in
@@ -35,10 +43,10 @@ let now_d_ps () =
   let frac_ps = Int64.(of_float (frac_s *. 1e12)) in
   (int_of_float days, (Int64.add rem_ps frac_ps))
 
-let current_tz_offset_s () = None
+let current_tz_offset_s t = None
 
 (* According to
  * https://github.com/mirage/mini-os/blob/edfd5aae6ec5ba7d0a8834a3e9dfe5e69424150a/arch/x86/time.c#L194
  * the clock period is 1 microsecond
  * *)
-let period_d_ps () = Some (0, 1_000_000L)
+let period_d_ps t = Some (0, 1_000_000L)

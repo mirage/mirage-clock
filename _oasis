@@ -31,7 +31,7 @@ Library "mirage-clock-xen"
   Path:           xen
   Modules:        Pclock, Mclock
   Findlibname:    mirage-clock-xen
-  BuildDepends:   mirage-types
+  BuildDepends:   mirage-types, lwt
 
 Executable "portable"
   Build$:         flag(unix)

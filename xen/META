@@ -1,8 +1,8 @@
 # OASIS_START
-# DO NOT EDIT (digest: 86a6761c5b26f8b30d3b075998f73769)
+# DO NOT EDIT (digest: 3e242c845e7e58d933f8a63847acd1e7)
 version = "1.1.0"
 description = "Posix clocks for Mirage"
-requires = "mirage-types"
+requires = "mirage-types lwt"
 archive(byte) = "mirage-clock-xen.cma"
 archive(byte, plugin) = "mirage-clock-xen.cma"
 archive(native) = "mirage-clock-xen.cmxa"
