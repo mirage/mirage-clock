@@ -1,5 +1,5 @@
 (*
- * Copyright (c) 2010 Anil Madhavapeddy <anil@recoil.org>
+ * Copyright (c) 2015 Matt Gray <matthew.thomas.gray@gmail.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -13,23 +13,15 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
+type t = unit
+type id = string
+type 'a io = 'a Lwt.t
+type error = unit
 
-type tm = {
-  tm_sec : int;
-  tm_min : int;
-  tm_hour : int;
-  tm_mday : int;
-  tm_mon : int;
-  tm_year : int;
-  tm_wday : int;
-  tm_yday : int;
-  tm_isdst : bool;
-}
+external _elapsed_ns : unit -> int64 = "ocaml_monotonic_clock_elapsed_ns"
 
-let time () = Unix.gettimeofday ()
+let connect _ = Lwt.return (`Ok ())
+let disconnect _t = Lwt.return ()
 
-let gmtime x =
-  let t = Unix.gmtime x in
-  { tm_sec=t.Unix.tm_sec; tm_min=t.Unix.tm_min; tm_hour=t.Unix.tm_hour; tm_mday=t.Unix.tm_mday;
-    tm_mon=t.Unix.tm_mon; tm_year=t.Unix.tm_year; tm_wday=t.Unix.tm_wday;
-    tm_yday=t.Unix.tm_yday; tm_isdst=t.Unix.tm_isdst }
+let elapsed_ns _ = _elapsed_ns ()
+let period_ns _ = None
