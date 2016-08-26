@@ -799,4 +799,12 @@ let dispatch_default = MyOCamlbuildBase.dispatch_default conf package_default;;
 
 # 801 "myocamlbuild.ml"
 (* OASIS_STOP *)
-Ocamlbuild_plugin.dispatch dispatch_default;;
+let os = Ocamlbuild_pack.My_unix.run_and_read "uname -s"
+
+let system_support_lib = match os with
+| "Linux\n" -> [A "-cclib"; A "-lrt" ]
+| _ -> []
+
+let () =
+  flag ["link"] (S (system_support_lib));
+  Ocamlbuild_plugin.dispatch dispatch_default
