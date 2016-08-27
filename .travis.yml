@@ -15,12 +15,11 @@ addons:
     - ocaml-interp
     - ocaml-base-nox
     - ocaml-nox
-    - camlp4
-    - camlp4-extra
     - time
 env:
   global:
-    - OCAML_VERSION=4.01
+    - EXTRA_REMOTES="https://github.com/mirage/mirage-dev.git"
+    - OCAML_VERSION=4.02
     - FORK_USER=talex5 FORK_BRANCH=containers2 OPAMYES=true OPAM_SWITCH=system OPAM_INIT=true
   matrix:
     - PACKAGE="mirage-clock-xen"
