@@ -806,5 +806,5 @@ let system_support_lib = match os with
 | _ -> []
 
 let () =
-  flag ["link"] (S (system_support_lib));
+        flag ["link"; "ocaml"; "native"; "unix"] (S ([A "-cclib"; A "-lmirage-clock-unix_stubs"] @ system_support_lib));
   Ocamlbuild_plugin.dispatch dispatch_default
