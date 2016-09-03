@@ -1,12 +1,8 @@
-# OASIS_START
-# DO NOT EDIT (digest: 59c5a308582a3b95448ef4dedbf1ec9c)
 version = "1.1.0"
 description = "Posix clocks for Mirage"
 requires = "mirage-clock-unix cstruct mirage-types"
 archive(byte) = "portable.cma"
-archive(byte, plugin) = "portable.cma"
+plugin(byte) = "portable.cma"
 archive(native) = "portable.cmxa"
-archive(native, plugin) = "portable.cmxs"
+plugin(native) = "portable.cmxs"
 exists_if = "portable.cma"
-# OASIS_STOP
-
