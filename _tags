@@ -1,6 +1,7 @@
 true: bin_annot, safe_string
 <unix>: include
 <unix/*>: package(lwt), package(mirage-types.lwt)
+<unix/clock_stubs.c>: mirage_clock_unix_ccopt
 <unix/mirage-clock-unix.{cma,cmxa}>: use_mirage-clock-unix
 <unix/mirage-clock-unix.cmxs>: link_mirage-clock-unix
 <xen/*>: package(lwt), package(mirage-types.lwt)

@@ -10,6 +10,8 @@ let system_support_lib = match os with
 let () =
   dispatch begin function
   | After_rules ->
+      flag ["mirage_clock_unix_ccopt"; "compile"]
+        (S [A "-ccopt"; A "-O2"; A "-ccopt"; A "-g"; A "-ccopt"; A "-Wall"]);
       flag ["link"; "library"; "ocaml"; "native"; "use_mirage-clock-unix"]
         (S ([A "-cclib"; A "-lmirage-clock-unix_stubs"] @ system_support_lib));
       flag ["link"; "library"; "ocaml"; "byte"; "use_mirage-clock-unix"]
