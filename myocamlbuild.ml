@@ -17,7 +17,7 @@ let () =
       flag ["link"; "library"; "ocaml"; "byte"; "use_mirage-clock-unix"]
         (S ([A "-dllib"; A "-lmirage-clock-unix_stubs"] @ system_support_lib));
       flag ["link"; "ocaml"; "link_mirage-clock-unix"]
-        (A "unix/libmirage-clock-unix_stubs.a");
+        (S ([A "unix/libmirage-clock-unix_stubs.a"] @ system_support_lib));
       dep ["link"; "ocaml"; "use_mirage-clock-unix"]
         ["unix/libmirage-clock-unix_stubs.a"];
   | _ -> ()
