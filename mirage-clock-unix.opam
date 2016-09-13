@@ -1,5 +1,5 @@
 opam-version: "1.2"
-authors: "The MirageOS team"
+authors: ["Anil Madhavapeddy" "Daniel C. Bünzli" "Matthew Gray"]
 maintainer: "anil@recoil.org"
 homepage: "https://github.com/mirage/mirage-clock"
 bug-reports: "https://github.com/mirage/mirage-clock/issues"
