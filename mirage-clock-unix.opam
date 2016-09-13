@@ -3,18 +3,22 @@ authors: "The MirageOS team"
 maintainer: "anil@recoil.org"
 homepage: "https://github.com/mirage/mirage-clock"
 bug-reports: "https://github.com/mirage/mirage-clock/issues"
+license: "ISC"
 tags: [
   "org:mirage"
   "org:xapi-project"
 ]
-build: [make "unix-build"]
-install: [make "unix-install"]
-remove: ["ocamlfind" "remove" "mirage-clock-unix"]
 depends: [
-  "ocamlfind"
+  "ocamlfind" {build}
+  "ocamlbuild" {build}
+  "topkg" {build}
   "mirage-types" {>= "0.3.0"}
   "mirage-types-lwt"
   "lwt"
-  "cstruct" {>= "2.0.0"}
+]
+build: [ "ocaml" "pkg/pkg.ml" "build" "--pkg-name" name "--pinned" "%{pinned}%" ]
+build-test: [
+  [ "ocaml" "pkg/pkg.ml" "build" "--pkg-name" name "--pinned" "%{pinned}%" "--tests" "true" ]
+  [ "ocaml" "pkg/pkg.ml" "test" ]
 ]
 dev-repo: "git://github.com/mirage/mirage-clock"

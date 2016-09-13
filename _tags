@@ -1,46 +1,8 @@
-# OASIS_START
-# DO NOT EDIT (digest: 5fa4b2ddef44532834e0581d9e59fce7)
-# Ignore VCS directories, you can use the same kind of rule outside
-# OASIS_START/STOP if you want to exclude directories that contains
-# useless stuff for the build process
-true: annot, bin_annot
-<**/.svn>: -traverse
-<**/.svn>: not_hygienic
-".bzr": -traverse
-".bzr": not_hygienic
-".hg": -traverse
-".hg": not_hygienic
-".git": -traverse
-".git": not_hygienic
-"_darcs": -traverse
-"_darcs": not_hygienic
-# Library mirage-clock-unix
-"unix/mirage-clock-unix.cmxs": use_mirage-clock-unix
-<unix/*.ml{,i,y}>: oasis_library_mirage_clock_unix_ccopt
-"unix/clock_stubs.c": oasis_library_mirage_clock_unix_ccopt
-<unix/mirage-clock-unix.{cma,cmxa}>: oasis_library_mirage_clock_unix_cclib
-"unix/libmirage-clock-unix_stubs.lib": oasis_library_mirage_clock_unix_cclib
-"unix/dllmirage-clock-unix_stubs.dll": oasis_library_mirage_clock_unix_cclib
-"unix/libmirage-clock-unix_stubs.a": oasis_library_mirage_clock_unix_cclib
-"unix/dllmirage-clock-unix_stubs.so": oasis_library_mirage_clock_unix_cclib
-<unix/mirage-clock-unix.{cma,cmxa}>: use_libmirage-clock-unix_stubs
-<unix/*.ml{,i,y}>: pkg_lwt
-<unix/*.ml{,i,y}>: pkg_mirage-types
-"unix/clock_stubs.c": pkg_lwt
-"unix/clock_stubs.c": pkg_mirage-types
-# Library mirage-clock-xen
-"xen/mirage-clock-xen.cmxs": use_mirage-clock-xen
-<xen/*.ml{,i,y}>: pkg_lwt
-<xen/*.ml{,i,y}>: pkg_mirage-types
-# Executable portable
-<lib_test/portable.{native,byte}>: pkg_cstruct
-<lib_test/portable.{native,byte}>: pkg_lwt
-<lib_test/portable.{native,byte}>: pkg_lwt.unix
-<lib_test/portable.{native,byte}>: pkg_mirage-types
-<lib_test/portable.{native,byte}>: use_mirage-clock-unix
-<lib_test/*.ml{,i,y}>: pkg_cstruct
-<lib_test/*.ml{,i,y}>: pkg_lwt
-<lib_test/*.ml{,i,y}>: pkg_lwt.unix
-<lib_test/*.ml{,i,y}>: pkg_mirage-types
-<lib_test/*.ml{,i,y}>: use_mirage-clock-unix
-# OASIS_STOP
+true: bin_annot, safe_string
+<unix>: include
+<unix/*>: package(lwt), package(mirage-types.lwt)
+<unix/clock_stubs.c>: mirage_clock_unix_ccopt
+<unix/mirage-clock-unix.{cma,cmxa}>: use_mirage-clock-unix
+<unix/mirage-clock-unix.cmxs>: link_mirage-clock-unix
+<xen/*>: package(lwt), package(mirage-types.lwt)
+<lib_test/*>: package(lwt), package(mirage-types.lwt), package(lwt.unix), link_mirage-clock-unix

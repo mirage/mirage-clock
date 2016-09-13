@@ -2,7 +2,7 @@ language: c
 install:
   - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-opam.sh
 script: bash -ex .travis-opam.sh
-sudo: false
+sudo: required
 addons:
   apt:
     sources:
@@ -20,7 +20,13 @@ env:
   global:
     - EXTRA_REMOTES="https://github.com/mirage/mirage-dev.git"
     - OCAML_VERSION=4.02
-    - FORK_USER=talex5 FORK_BRANCH=containers2 OPAMYES=true OPAM_SWITCH=system OPAM_INIT=true
-  matrix:
-    - PACKAGE="mirage-clock-xen"
-    - PACKAGE="mirage-clock-unix"
+
+matrix:
+  include:
+  - os: linux
+    env: PACKAGE="mirage-clock-xen"
+  - os: linux
+    env: PACKAGE="mirage-clock-unix"
+  - os: osx
+    osx_image: xcode7.3
+    env: PACKAGE="mirage-clock-unix"
