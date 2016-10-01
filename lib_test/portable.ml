@@ -20,19 +20,16 @@ let print_period_mono c = match Mclock.period_ns c with
   | None -> Printf.printf "Monotonic clock period unavailable\n"
 
 let main () =
-  Mclock.connect () >>= function
-  `Ok mclock -> (Pclock.connect () >>= function
-    `Ok clock -> (
-      print_mtime mclock;
-      print_time clock;
-      print_time clock;
-      print_time clock;
-      print_offset clock;
-      print_period clock;
-      print_mtime mclock;
-      print_period_mono mclock;
-      Lwt.return_unit
-    )
-    | `Error _ -> Lwt.return_unit)
-  | `Error _ -> Lwt.return_unit
+  Mclock.connect () >>= fun mclock ->
+  Pclock.connect () >>= fun clock ->
+  print_mtime mclock;
+  print_time clock;
+  print_time clock;
+  print_time clock;
+  print_offset clock;
+  print_period clock;
+  print_mtime mclock;
+  print_period_mono mclock;
+  Lwt.return_unit
+
 let _ = Lwt_main.run (main ())
