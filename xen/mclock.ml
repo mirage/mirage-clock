@@ -19,8 +19,8 @@ type id = string
 type 'a io = 'a Lwt.t
 type error = unit
 
-let connect _ = Lwt.return (`Ok ())
-let disconnect _t = Lwt.return ()
+let connect _ = Lwt.return_unit
+let disconnect _t = Lwt.return_unit
 
 external elapsed_ns : unit -> int64 = "caml_get_monotonic_time"
 let period_ns () = None
