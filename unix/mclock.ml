@@ -20,8 +20,8 @@ type error = unit
 
 external _elapsed_ns : unit -> int64 = "ocaml_monotonic_clock_elapsed_ns"
 
-let connect _ = Lwt.return (`Ok ())
-let disconnect _t = Lwt.return ()
+let connect _ = Lwt.return_unit
+let disconnect _t = Lwt.return_unit
 
 let elapsed_ns _ = _elapsed_ns ()
 let period_ns _ = None

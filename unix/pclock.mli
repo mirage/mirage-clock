@@ -20,4 +20,4 @@
 include V1_LWT.PCLOCK
   with type 'a io = 'a Lwt.t
 
-val connect : unit -> [`Ok of t | `Error of error] io
+val connect : unit -> t io

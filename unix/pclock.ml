@@ -24,8 +24,8 @@ let ps_count_in_s = 1_000_000_000_000L
 
 external posix_clock_gettime_s_ns : unit -> int * int = "ocaml_posix_clock_gettime_s_ns"
 
-let connect _ = Lwt.return (`Ok ())
-let disconnect _t = Lwt.return ()
+let connect _ = Lwt.return_unit
+let disconnect _t = Lwt.return_unit
 
 let now_d_ps t =
   let secs, ns = posix_clock_gettime_s_ns () in
