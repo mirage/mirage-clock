@@ -16,7 +16,6 @@
  *)
 
 type t = unit
-type id = string
 type 'a io = 'a Lwt.t
 type error = unit
 
