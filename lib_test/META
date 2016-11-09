@@ -1,4 +1,4 @@
-version = "1.1.0"
+version = "%%VERSION_NUM%%"
 description = "Posix clocks for Mirage"
 requires = "mirage-clock-unix cstruct mirage-types"
 archive(byte) = "portable.cma"
