@@ -1,4 +1,4 @@
-version = "%%VERSION%%"
+version = "%%VERSION_NUM%%"
 description = "Posix clocks for Mirage"
 requires = "mirage-types lwt"
 archive(byte) = "mirage-clock-unix.cma"
