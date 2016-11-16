@@ -24,7 +24,7 @@ env:
 matrix:
   include:
   - os: linux
-    env: PACKAGE="mirage-clock-xen"
+    env: PACKAGE="mirage-clock-freestanding"
   - os: linux
     env: PACKAGE="mirage-clock-unix"
   - os: osx

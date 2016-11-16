@@ -1,8 +1,0 @@
-version = "%%VERSION_NUM%%"
-description = "Posix clocks for Mirage"
-requires = "mirage-types lwt"
-archive(byte) = "mirage-clock-xen.cma"
-plugin(byte) = "mirage-clock-xen.cma"
-archive(native) = "mirage-clock-xen.cmxa"
-plugin(native) = "mirage-clock-xen.cmxs"
-exists_if = "mirage-clock-xen.cma"
