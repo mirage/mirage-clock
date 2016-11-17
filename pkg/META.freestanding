@@ -1,0 +1,8 @@
+version = "%%VERSION_NUM%%"
+description = "Posix clocks for Mirage"
+requires = "mirage-types lwt"
+archive(byte) = "mirage-clock-freestanding.cma"
+plugin(byte) = "mirage-clock-freestanding.cma"
+archive(native) = "mirage-clock-freestanding.cmxa"
+plugin(native) = "mirage-clock-freestanding.cmxs"
+exists_if = "mirage-clock-freestanding.cma"

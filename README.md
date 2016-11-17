@@ -10,4 +10,4 @@ The following sources are used:
 
 * The Unix version uses `gettimeofday` or `clock_gettime`, depending on
   which OS is in use (see [clock_stubs.c](https://github.com/mirage/mirage-clock/blob/master/unix/clock_stubs.c)).
-* The Xen version uses the paravirtual clock source from the hypervisor.
+* The freestanding version uses the paravirtual clock source from the hypervisor.
