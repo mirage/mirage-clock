@@ -3,6 +3,7 @@ authors: ["Anil Madhavapeddy" "Daniel C. Bünzli" "Matthew Gray"]
 maintainer: "anil@recoil.org"
 homepage: "https://github.com/mirage/mirage-clock"
 bug-reports: "https://github.com/mirage/mirage-clock/issues"
+dev-repo: "git://github.com/mirage/mirage-clock"
 license: "ISC"
 tags: [
   "org:mirage"
@@ -12,8 +13,8 @@ depends: [
   "ocamlfind" {build}
   "ocamlbuild" {build}
   "topkg" {build}
-  "mirage-types" {>= "0.3.0"}
-  "mirage-types-lwt"
+  "mirage-types" {>= "3.0.0"}
+  "mirage-types-lwt" {>= "3.0.0"}
   "lwt"
 ]
 build: [ "ocaml" "pkg/pkg.ml" "build" "--pkg-name" name "--pinned" "%{pinned}%" ]
@@ -21,4 +22,3 @@ build-test: [
   [ "ocaml" "pkg/pkg.ml" "build" "--pkg-name" name "--pinned" "%{pinned}%" "--tests" "true" ]
   [ "ocaml" "pkg/pkg.ml" "test" ]
 ]
-dev-repo: "git://github.com/mirage/mirage-clock"
