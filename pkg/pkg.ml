@@ -16,10 +16,10 @@ let metas = [
 ]
 
 let opams = [
-  opam_file [] "mirage-clock.opam";
-  opam_file [] "mirage-clock-lwt.opam";
-  opam_file [] "mirage-clock-unix.opam";
-  opam_file [] "mirage-clock-freestanding.opam";
+  opam_file ["lwt"; "mirage-clock"; "mirage-clock-lwt"] "mirage-clock.opam";
+  opam_file ["mirage-device"; "mirage-clock-lwt"] "mirage-clock-lwt.opam";
+  opam_file ["mirage-device"] "mirage-clock-unix.opam";
+  opam_file ["mirage-device"] "mirage-clock-freestanding.opam";
 ]
 
 let () =
