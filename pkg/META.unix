@@ -1,6 +1,6 @@
 version = "%%VERSION_NUM%%"
 description = "Posix clocks for Mirage"
-requires = "mirage-types lwt mirage-types-lwt"
+requires = "mirage-clock lwt mirage-clock-lwt"
 archive(byte) = "mirage-clock-unix.cma"
 archive(native) = "mirage-clock-unix.cmxa"
 plugin(byte) = "mirage-clock-unix.cma"

@@ -5,16 +5,13 @@ homepage: "https://github.com/mirage/mirage-clock"
 bug-reports: "https://github.com/mirage/mirage-clock/issues"
 dev-repo: "git://github.com/mirage/mirage-clock"
 license: "ISC"
-tags: [
-  "org:mirage"
-  "org:xapi-project"
-]
+tags: ["org:mirage"]
 depends: [
   "ocamlfind" {build}
   "ocamlbuild" {build}
   "topkg" {build}
-  "mirage-types" {>= "3.0.0"}
-  "mirage-types-lwt" {>= "3.0.0"}
+  "mirage-clock" {>= "1.2.0"}
+  "mirage-clock-lwt" {>= "1.2.0"}
   "lwt"
 ]
 build: [

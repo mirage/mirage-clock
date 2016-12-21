@@ -3,19 +3,34 @@
 #require "topkg"
 open Topkg
 
+let meta_file = Pkg.meta_file ~install:false
+
+let opam_file no_lint name =
+  Pkg.opam_file ~install:false ~lint_deps_excluding:(Some no_lint) name
+
+let metas = [
+    meta_file "pkg/META";
+    meta_file "pkg/META.lwt";
+    meta_file "pkg/META.unix";
+    meta_file "pkg/META.freestanding";
+]
+
+let opams = [
+  opam_file [] "mirage-clock.opam";
+  opam_file [] "mirage-clock-lwt.opam";
+  opam_file [] "mirage-clock-unix.opam";
+  opam_file [] "mirage-clock-freestanding.opam";
+]
+
 let () =
-  let install = false in
-  let metas = [
-    Pkg.meta_file ~install "pkg/META.unix";
-    Pkg.meta_file ~install "pkg/META.freestanding" ]
-  in
-  let lint_deps_excluding = Some ["mirage-types-lwt"] in
-  let opams = [
-    Pkg.opam_file ~install ~lint_deps_excluding "mirage-clock-unix.opam";
-    Pkg.opam_file ~install ~lint_deps_excluding "mirage-clock-freestanding.opam" ]
-  in
-  Pkg.describe ~metas ~opams "mirage-clock-unix" @@ fun c ->
+  Pkg.describe ~metas ~opams "mirage-clock" @@ fun c ->
   match Conf.pkg_name c with
+  | "mirage-clock" ->
+    Ok [ Pkg.lib "pkg/META";
+         Pkg.lib ~exts:Exts.interface "src/mirage_clock" ]
+  | "mirage-clock-lwt" ->
+    Ok [ Pkg.lib "pkg/META.lwt" ~dst:"META";
+         Pkg.lib ~exts:Exts.interface "lwt/mirage_clock_lwt" ]
   | "mirage-clock-unix" ->
       Ok [  Pkg.lib "pkg/META.unix" ~dst:"META";
             Pkg.mllib "unix/mirage-clock-unix.mllib";
