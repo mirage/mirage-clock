@@ -16,9 +16,8 @@
 
 (** {1 POSIX clock}
 
-    Clock counting time since the Unix epoch. Subject to adjustment by e.g. NTP. *)
+    Clock counting time since the Unix epoch. Subject to adjustment by
+    e.g. NTP. *)
 
-include V1_LWT.PCLOCK
-  with type 'a io = 'a Lwt.t
-
-val connect : unit -> t io
+include Mirage_clock_lwt.PCLOCK
+val connect : unit -> t Lwt.t
