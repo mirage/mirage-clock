@@ -4,17 +4,14 @@ maintainer: "anil@recoil.org"
 homepage: "https://github.com/mirage/mirage-clock"
 bug-reports: "https://github.com/mirage/mirage-clock/issues"
 dev-repo: "git://github.com/mirage/mirage-clock"
+doc: "https://mirage.github.io/mirage-clock/"
+
 license: "ISC"
 tags: ["org:mirage"]
 depends: [
   "ocamlfind" {build}
   "ocamlbuild" {build}
   "topkg" {build}
-  "mirage-clock" {>= "1.2.0"}
-  "mirage-clock-lwt" {>= "1.2.0"}
-  "lwt"
+  "mirage-device"
 ]
-build: [
-  "ocaml" "pkg/pkg.ml" "build"
-            "--pkg-name" name
-            "--pinned" "%{pinned}%" ]
+build: [ "ocaml" "pkg/pkg.ml" "build" "--pkg-name" name "--pinned" "%{pinned}%" ]

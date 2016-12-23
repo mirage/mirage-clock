@@ -16,10 +16,8 @@
 
 (** {1 Monotonic clock}
 
-    Clock returning monotonic time since an arbitrary point. To be used for eg.
-    profiling. *)
+    Clock returning monotonic time since an arbitrary point. To be
+    used for eg. profiling. *)
 
-include V1_LWT.MCLOCK
-  with type 'a io = 'a Lwt.t
-
-val connect : unit -> t io
+include Mirage_clock_lwt.MCLOCK
+val connect : unit -> t Lwt.t

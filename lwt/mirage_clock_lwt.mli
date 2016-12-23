@@ -1,5 +1,5 @@
 (*
- * Copyright (c) 2015 Daniel C. Bünzli
+ * Copyright (c) 2015 Matt Gray <matthew.thomas.gray@gmail.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -13,11 +13,11 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
+(** {1 Clock devices for MirageOS devices, using lwt}
 
-(** {1 POSIX clock}
+    {e Release %%VERSION%% } *)
 
-    Clock counting time since the Unix epoch. Subject to adjustment by
-    e.g. NTP. *)
-include Mirage_clock_lwt.PCLOCK
+open Mirage_clock
 
-val connect : unit -> t io
+module type MCLOCK = MCLOCK with type 'a io = 'a Lwt.t
+module type PCLOCK = PCLOCK with type 'a io = 'a Lwt.t

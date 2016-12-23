@@ -1,8 +1,0 @@
-version = "%%VERSION_NUM%%"
-description = "Posix clocks for Mirage"
-requires = "mirage-clock-unix cstruct mirage-types"
-archive(byte) = "portable.cma"
-plugin(byte) = "portable.cma"
-archive(native) = "portable.cmxa"
-plugin(native) = "portable.cmxs"
-exists_if = "portable.cma"

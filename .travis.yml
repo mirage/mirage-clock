@@ -19,7 +19,8 @@ addons:
 env:
   global:
     - EXTRA_REMOTES="https://github.com/mirage/mirage-dev.git"
-    - OCAML_VERSION=4.02
+    - PINS="mirage-console:. mirage-console-lwt:."
+    - OCAML_VERSION=4.03
 
 matrix:
   include:
