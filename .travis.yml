@@ -18,7 +18,6 @@ addons:
     - time
 env:
   global:
-    - EXTRA_REMOTES="https://github.com/mirage/mirage-dev.git"
     - PINS="mirage-console:. mirage-console-lwt:."
     - OCAML_VERSION=4.03
 
