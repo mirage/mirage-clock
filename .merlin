@@ -1,5 +1,0 @@
-PKG mirage-device lwt
-S src
-S lwt
-S unix
-B _build/**

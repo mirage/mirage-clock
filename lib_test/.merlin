@@ -1,0 +1,16 @@
+B ../../_build/default/mirage-clock/lib_test
+B ../../_build/default/mirage-clock/lwt
+B ../../_build/default/mirage-clock/src
+B ../../_build/default/mirage-clock/unix
+B ../../_build/default/mirage-device/src
+FLG -w -40
+PKG bigarray
+PKG bytes
+PKG fmt
+PKG lwt
+PKG lwt.log
+PKG lwt.unix
+PKG result
+PKG uchar
+PKG unix
+S .

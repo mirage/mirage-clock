@@ -1,3 +1,0 @@
-description = "Clock device signatures for MirageOS"
-version = "%%VERSION_NUM%%"
-requires = "mirage-device"

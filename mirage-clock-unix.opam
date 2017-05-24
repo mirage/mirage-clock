@@ -11,16 +11,13 @@ tags: ["org:mirage"]
 
 depends: [
   "ocamlfind" {build}
-  "ocamlbuild" {build}
+  "jbuilder" {build & >="1.0+beta8"}
   "topkg" {build & >= "0.8.0"}
+  "topkg-jbuilder" {build}
   "mirage-clock" {>= "1.2.0"}
   "mirage-clock-lwt" {>= "1.2.0"}
   "lwt"
 ]
-build: [
-  "ocaml" "pkg/pkg.ml" "build" "-n" name "--pinned" "%{pinned}%" "--tests" "false"
-]
-build-test: [
-  [ "ocaml" "pkg/pkg.ml" "build" "-n" name "--pinned" "%{pinned}%" "--tests" "true" ]
-  [ "ocaml" "pkg/pkg.ml" "test" "-n" name ]
-]
+build: [["jbuilder" "build" "-p" name "-j" jobs]]
+build-test: [["jbuilder" "runtest" "-p" name "-j" jobs ]]
+

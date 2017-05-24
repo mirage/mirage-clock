@@ -5,13 +5,14 @@ homepage: "https://github.com/mirage/mirage-clock"
 bug-reports: "https://github.com/mirage/mirage-clock/issues"
 dev-repo: "git://github.com/mirage/mirage-clock"
 doc: "https://mirage.github.io/mirage-clock/"
-
 license: "ISC"
 tags: ["org:mirage"]
 depends: [
   "ocamlfind" {build}
-  "ocamlbuild" {build}
+  "jbuilder" {build & >="1.0+beta8"}
   "topkg" {build & >= "0.8.0"}
+  "topkg-jbuilder" {build}
   "mirage-device" {>= "1.0.0"}
 ]
-build: [ "ocaml" "pkg/pkg.ml" "build" "--pkg-name" name "--pinned" "%{pinned}%" ]
+build: [["jbuilder" "build" "-p" name "-j" jobs]]
+build-test: [["jbuilder" "runtest" "-p" name "-j" jobs ]]
