@@ -15,4 +15,3 @@ depends: [
   "mirage-device" {>= "1.0.0"}
 ]
 build: [["jbuilder" "build" "-p" name "-j" jobs]]
-build-test: [["jbuilder" "runtest" "-p" name "-j" jobs ]]
