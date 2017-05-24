@@ -17,6 +17,7 @@ depends: [
   "mirage-clock" {>= "1.2.0"}
   "mirage-clock-lwt" {>= "1.2.0"}
   "lwt"
+  "configurator" {build}
 ]
 build: [["jbuilder" "build" "-p" name "-j" jobs]]
 build-test: [["jbuilder" "runtest" "-p" name "-j" jobs ]]
