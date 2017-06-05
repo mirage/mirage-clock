@@ -1,7 +1,0 @@
-B ../../_build/default/mirage-clock/src
-B ../../_build/default/mirage-device/src
-FLG -w -40
-PKG fmt
-PKG result
-PKG uchar
-S .
