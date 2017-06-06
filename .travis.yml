@@ -18,7 +18,7 @@ addons:
     - time
 env:
   global:
-    - PINS="mirage-console:. mirage-console-lwt:."
+    - PINS="mirage-clock:. mirage-clock-lwt:. mirage-clock-unix:. mirage-clock-freestanding:."
     - OCAML_VERSION=4.03
 
 matrix:

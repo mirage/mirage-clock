@@ -1,3 +1,0 @@
-description = "Clock device signatures for MirageOS, using lwt"
-version = "%%VERSION_NUM%%"
-requires = "mirage-clock lwt"
