@@ -13,4 +13,4 @@ depends: [
   "mirage-clock" {>= "1.2.0"}
   "lwt"
 ]
-build: [["jbuilder" "build" "-p" name "-j" jobs]]
+build: [["jbuilder" "subst" {pinned}] ["jbuilder" "build" "-p" name "-j" jobs]]
