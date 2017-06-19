@@ -10,10 +10,7 @@ license: "ISC"
 tags: ["org:mirage"]
 
 depends: [
-  "ocamlfind" {build}
-  "jbuilder" {build & >="1.0+beta8"}
-  "topkg" {build & >= "0.8.0"}
-  "topkg-jbuilder" {build}
+  "jbuilder" {build & >="1.0+beta9"}
   "mirage-clock" {>= "1.2.0"}
   "mirage-clock-lwt" {>= "1.2.0"}
   "lwt"
@@ -21,4 +18,3 @@ depends: [
 ]
 build: [["jbuilder" "build" "-p" name "-j" jobs]]
 build-test: [["jbuilder" "runtest" "-p" name "-j" jobs ]]
-
