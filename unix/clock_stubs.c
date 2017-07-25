@@ -27,6 +27,10 @@
  #if defined(_POSIX_VERSION)
    #define OCAML_MIRAGE_CLOCK_POSIX
  #endif
+
+#elif defined(_WIN32)
+  #define OCAML_MIRAGE_CLOCK_WINDOWS
+
 #endif
 
 #if defined(OCAML_MIRAGE_CLOCK_DARWIN)
@@ -117,6 +121,104 @@ CAMLprim value ocaml_monotonic_clock_elapsed_ns (value unit)
   return caml_copy_int64 ((uint64_t)(now.tv_sec - start.tv_sec) *
                           (uint64_t)1000000000 +
                           (uint64_t)(now.tv_nsec - start.tv_nsec));
+}
+
+#elif defined(OCAML_MIRAGE_CLOCK_WINDOWS)
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+
+static double performance_frequency;
+static void set_performance_frequency(void)
+{
+  LARGE_INTEGER t_freq;
+  if (!QueryPerformanceFrequency(&t_freq)) { caml_failwith("QueryPerformanceFrequency()"); }
+  performance_frequency = (1000000000.0 / t_freq.QuadPart);
+}
+
+/* MCLOCK */
+
+CAMLprim value ocaml_monotonic_clock_elapsed_ns (value unit)
+{
+  (void) unit;
+  static LARGE_INTEGER start;
+  if (performance_frequency == 0.0) {
+    set_performance_frequency();
+  }
+  if ( start.QuadPart == 0 )
+  {
+    if (!QueryPerformanceCounter(&start)) { caml_failwith("QueryPerformanceCounter(&start)"); }
+  }
+  static LARGE_INTEGER now;
+  if ( !QueryPerformanceCounter(&now)) { caml_failwith("QueryPerformanceCounter(&now)"); }
+  uint64_t ret = (now.QuadPart - start.QuadPart) * performance_frequency;
+  return caml_copy_int64(ret);
+}
+
+/* PCLOCK */
+
+#ifndef CLOCK_REALTIME
+#define CLOCK_REALTIME 1
+#endif
+
+#define POW10_7                 10000000
+#define DELTA_EPOCH_IN_100NS    INT64_C(116444736000000000)
+
+typedef void (WINAPI *GetSystemTimeAsFileTime_t)(LPFILETIME lpSystemTimeAsFileTime);
+static GetSystemTimeAsFileTime_t i_GetSystemTimeAsFileTime = GetSystemTimeAsFileTime;
+static int clock_gettime_init_called = 0;
+
+static void clock_gettime_init(void) {
+  /* Use GetSystemTimePreciseAsFileTime when available */
+  HMODULE h ;
+  clock_gettime_init_called = 1;
+  h = LoadLibrary("kernel32.dll");
+  if (h != NULL) {
+    GetSystemTimeAsFileTime_t proc = (GetSystemTimeAsFileTime_t)GetProcAddress(h, "GetSystemTimePreciseAsFileTime");
+    if (proc != NULL) {
+      i_GetSystemTimeAsFileTime = proc;
+    }
+    else {
+      FreeLibrary(h);
+    }
+  }
+}
+
+CAMLprim value ocaml_posix_clock_gettime_s_ns (value unit)
+{
+  CAMLparam1(unit);
+  CAMLlocal1(time_s_ns);
+
+  uint64_t t;
+  FILETIME ft;
+  ULARGE_INTEGER lft;
+  time_s_ns = caml_alloc(2, 0);
+
+  if ( clock_gettime_init_called == 0 ){ clock_gettime_init(); }
+  i_GetSystemTimeAsFileTime(&ft);
+  lft.LowPart  = ft.dwLowDateTime;
+  lft.HighPart = ft.dwHighDateTime;
+  t = lft.QuadPart - DELTA_EPOCH_IN_100NS;
+
+  Store_field(time_s_ns, 0, Val_int(t / POW10_7));
+  Store_field(time_s_ns, 1, Val_long(((int) (t % POW10_7)) * 100));
+
+  CAMLreturn (time_s_ns);
+}
+
+CAMLprim value ocaml_posix_clock_period_ns (value unit)
+{
+  (void) unit;
+  if (performance_frequency == 0.0) {
+    set_performance_frequency();
+  }
+  if ( performance_frequency <= 0.0 ) return caml_copy_int64 (0L);
+  value ret;
+  value p = caml_copy_int64(performance_frequency);
+  Begin_roots1(p);
+  ret = caml_alloc_small(1,0);
+  Field(ret,0) = p;
+  End_roots();
+  return ret;
 }
 
 #else
