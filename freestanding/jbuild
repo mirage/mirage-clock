@@ -3,4 +3,4 @@
   (wrapped     false)
   (public_name mirage-clock-freestanding)
   (libraries   (mirage-clock mirage-clock-lwt))
-))
+  (flags (:standard -safe-string))))
