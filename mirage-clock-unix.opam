@@ -20,3 +20,4 @@ build: [
   [ "jbuilder" "build" "-p" name "-j" jobs ]
 ]
 build-test: ["jbuilder" "runtest" "-p" name]
+available: [ ocaml-version >= "4.04.2" ]

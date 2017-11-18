@@ -16,3 +16,4 @@ build: [
   [ "jbuilder" "subst" ] {pinned}
   [ "jbuilder" "build" "-p" name "-j" jobs ]
 ]
+available: [ ocaml-version >= "4.04.2" ]
