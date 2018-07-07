@@ -51,8 +51,8 @@ CAMLprim value ocaml_posix_clock_gettime_s_ns (value unit)
   struct timeval now;
   if (gettimeofday(&now, NULL) == -1) { caml_failwith("gettimeofday"); }
 
-  Store_field(time_s_ns, 0, Val_int(now.tv_sec));
-  Store_field(time_s_ns, 1, Val_long(now.tv_usec * 1000L));
+  Store_field(time_s_ns, 0, caml_copy_int64(now.tv_sec));
+  Store_field(time_s_ns, 1, caml_copy_int64(now.tv_usec * 1000L));
 
   CAMLreturn (time_s_ns);
 }
@@ -94,8 +94,8 @@ CAMLprim value ocaml_posix_clock_gettime_s_ns (value unit)
   struct timespec now;
   if (clock_gettime(CLOCK_REALTIME, &now) == -1) { caml_failwith("clock_gettime(CLOCK_REALTIME, ..)"); }
 
-  Store_field(time_s_ns, 0, Val_int(now.tv_sec));
-  Store_field(time_s_ns, 1, Val_long(now.tv_nsec));
+  Store_field(time_s_ns, 0, caml_copy_int64(now.tv_sec));
+  Store_field(time_s_ns, 1, caml_copy_int64(now.tv_nsec));
 
   CAMLreturn (time_s_ns);
 }
@@ -199,8 +199,8 @@ CAMLprim value ocaml_posix_clock_gettime_s_ns (value unit)
   lft.HighPart = ft.dwHighDateTime;
   t = lft.QuadPart - DELTA_EPOCH_IN_100NS;
 
-  Store_field(time_s_ns, 0, Val_int(t / POW10_7));
-  Store_field(time_s_ns, 1, Val_long(((int) (t % POW10_7)) * 100));
+  Store_field(time_s_ns, 0, caml_copy_int64(t / POW10_7));
+  Store_field(time_s_ns, 1, caml_copy_int64(((int) (t % POW10_7)) * 100));
 
   CAMLreturn (time_s_ns);
 }
@@ -229,8 +229,8 @@ CAMLprim value ocaml_posix_clock_gettime_s_ns (value unit)
   CAMLlocal1(time_s_ns);
   time_s_ns = caml_alloc(2, 0);
 
-  Store_field(time_s_ns, 0, Val_int(0));
-  Store_field(time_s_ns, 1, Val_long(0L));
+  Store_field(time_s_ns, 0, caml_copy_int64(0));
+  Store_field(time_s_ns, 1, caml_copy_int64(0L));
 
   CAMLreturn (time_s_ns);
 }
