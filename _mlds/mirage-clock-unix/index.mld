@@ -1,0 +1,3 @@
+{2 Library mirage-clock-unix}
+This library exposes the following toplevel modules:
+{!modules:Mclock Pclock}
