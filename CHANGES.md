@@ -1,3 +1,7 @@
+### v1.4.1 (2018-08-03)
+
+* mirage-clock-unix: fix integer overflow on 32 bit (#37, @mattgray)
+
 ### v1.4.0 (2017-07-25)
 
 * Add support for windows to `mirage-clock-unix` (#32, @fdopen and @samoht)
