@@ -25,7 +25,7 @@
     e.g. NTP. *)
 module type PCLOCK = sig
 
-  include Mirage_device.S
+  include Mirage_device.S with type t = unit
 
   val now_d_ps : t -> int * int64
   (** [now_d_ps ()] is [(d, ps)] representing the POSIX time occuring
@@ -51,7 +51,7 @@ end
     used for eg. profiling. *)
 module type MCLOCK = sig
 
-  include Mirage_device.S
+  include Mirage_device.S with type t = unit
 
   val elapsed_ns : t -> int64
   (** [elapsed_ns ()] is a monotonically increasing count of
