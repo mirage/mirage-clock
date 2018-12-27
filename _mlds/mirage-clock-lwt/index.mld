@@ -1,3 +1,0 @@
-{2 Library mirage-clock-lwt}
-The entry point of this library is the module:
-{!module-Mirage_clock_lwt}.
