@@ -14,7 +14,7 @@ the `io` type to use the Lwt concurrency monad.
 depends: [
   "ocaml" {>= "4.04.2"}
   "dune" {build}
-  "mirage-clock" {>= version}
+  "mirage-clock" {>= "1.2.0"}
   "lwt"
 ]
 build: [
