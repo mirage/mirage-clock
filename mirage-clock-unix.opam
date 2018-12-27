@@ -16,7 +16,7 @@ depends: [
   "ocaml" {>= "4.04.2"}
   "dune" {build}
   "mirage-clock" {>= version}
-  "mirage-clock-lwt" {>= versionn}
+  "mirage-clock-lwt" {>= version}
   "lwt"
 ]
 build: [
