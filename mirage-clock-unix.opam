@@ -1,23 +1,27 @@
-opam-version: "1.2"
-authors:      ["Anil Madhavapeddy" "Daniel C. Bünzli" "Matthew Gray"]
-maintainer:   "anil@recoil.org"
-homepage:     "https://github.com/mirage/mirage-clock"
-bug-reports:  "https://github.com/mirage/mirage-clock/issues"
-dev-repo:     "https://github.com/mirage/mirage-clock.git"
-doc:          "https://mirage.github.io/mirage-clock/"
-license:      "ISC"
-tags:         ["org:mirage"]
-
+opam-version: "2.0"
+maintainer: "anil@recoil.org"
+authors: ["Anil Madhavapeddy" "Daniel C. Bünzli" "Matthew Gray"]
+license: "ISC"
+tags: "org:mirage"
+homepage: "https://github.com/mirage/mirage-clock"
+doc: "https://mirage.github.io/mirage-clock/"
+bug-reports: "https://github.com/mirage/mirage-clock/issues"
+synopsis: "Unix-based implementation for the MirageOS Clock interface"
+description: """
+The Unix implementation of the MirageOS Clock interface uses
+`gettimeofday` or `clock_gettime`, depending on
+which OS is in use (see [clock_stubs.c](https://github.com/mirage/mirage-clock/blob/master/unix/clock_stubs.c)).
+"""
 depends: [
-  "jbuilder" {build & >="1.0+beta9"}
-  "mirage-clock" {>= "1.2.0"}
-  "mirage-clock-lwt" {>= "1.2.0"}
+  "ocaml" {>= "4.04.2"}
+  "dune" {build}
+  "mirage-clock" {>= version}
+  "mirage-clock-lwt" {>= versionn}
   "lwt"
-  "configurator" {build}
 ]
 build: [
-  [ "jbuilder" "subst" ] {pinned}
-  [ "jbuilder" "build" "-p" name "-j" jobs ]
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
+  ["dune" "runtest" "-p" name] {with-test}
 ]
-build-test: ["jbuilder" "runtest" "-p" name]
-available: [ ocaml-version >= "4.04.2" ]
+dev-repo: "git+https://github.com/mirage/mirage-clock.git"

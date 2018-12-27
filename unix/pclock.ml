@@ -17,7 +17,6 @@
 
 type t = unit
 type 'a io = 'a Lwt.t
-type error = unit
 
 let ps_count_in_s = 1_000_000_000_000L
 
@@ -26,7 +25,7 @@ external posix_clock_gettime_s_ns : unit -> int64 * int64 = "ocaml_posix_clock_g
 let connect _ = Lwt.return_unit
 let disconnect _t = Lwt.return_unit
 
-let now_d_ps t =
+let now_d_ps () =
   let secs, ns = posix_clock_gettime_s_ns () in
   let days = Int64.div secs 86_400L in
   let rem_s = Int64.rem secs 86_400L in
@@ -34,7 +33,7 @@ let now_d_ps t =
   let rem_ps = Int64.mul rem_s ps_count_in_s in
   (Int64.to_int days, (Int64.add rem_ps frac_ps))
 
-let current_tz_offset_s t =
+let current_tz_offset_s () =
   let now = Unix.gettimeofday () in
   let utc = Unix.gmtime now in
   let local = Unix.localtime now in
@@ -49,13 +48,13 @@ let current_tz_offset_s t =
       | 1 -> d_min + min_per_day
       | -1 -> d_min - min_per_day
       (* year wrapped *)
-      | d_day -> if d_min < -1 then d_min + min_per_day else d_min - min_per_day
+      | _ -> if d_min < -1 then d_min + min_per_day else d_min - min_per_day
     in
   Some (d_min * 60)
 
 external posix_clock_period_ns : unit -> int64 = "ocaml_posix_clock_period_ns"
 
-let period_d_ps t =
+let period_d_ps () =
   let period_ns = posix_clock_period_ns () in
   match period_ns with
     | 0L -> None

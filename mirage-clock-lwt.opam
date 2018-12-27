@@ -1,20 +1,24 @@
-opam-version: "1.2"
-authors:      ["Anil Madhavapeddy" "Daniel C. Bünzli" "Matthew Gray"]
-maintainer:   "anil@recoil.org"
-homepage:     "https://github.com/mirage/mirage-clock"
-bug-reports:  "https://github.com/mirage/mirage-clock/issues"
-dev-repo:     "https://github.com/mirage/mirage-clock.git"
-doc:          "https://mirage.github.io/mirage-clock/"
-license:      "ISC"
-tags:         ["org:mirage"]
-
+opam-version: "2.0"
+maintainer: "anil@recoil.org"
+authors: ["Anil Madhavapeddy" "Daniel C. Bünzli" "Matthew Gray"]
+license: "ISC"
+tags: "org:mirage"
+homepage: "https://github.com/mirage/mirage-clock"
+doc: "https://mirage.github.io/mirage-clock/"
+bug-reports: "https://github.com/mirage/mirage-clock/issues"
+synopsis: "Lwt-based implementation of the MirageOS Clock interface"
+description: """
+This implementation of the MirageOS CLOCK interface specialises
+the `io` type to use the Lwt concurrency monad.
+"""
 depends: [
-  "jbuilder"   {build & >="1.0+beta9"}
-  "mirage-clock" {>= "1.2.0"}
+  "ocaml" {>= "4.04.2"}
+  "dune" {build}
+  "mirage-clock" {>= version}
   "lwt"
 ]
 build: [
-  [ "jbuilder" "subst" ] {pinned}
-  [ "jbuilder" "build" "-p" name "-j" jobs ]
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
 ]
-available: [ ocaml-version >= "4.04.2" ]
+dev-repo: "git+https://github.com/mirage/mirage-clock.git"

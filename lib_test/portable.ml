@@ -9,7 +9,7 @@ let print_offset c = match Pclock.current_tz_offset_s c with
   | None -> Printf.printf "Clock UTC offset unavailable\n"
 
 let print_period c = match Pclock.period_d_ps c with
-  | Some (d, ps) -> Printf.printf "The clock period is: %Ld picoseconds\n" ps
+  | Some (_, ps) -> Printf.printf "The clock period is: %Ld picoseconds\n" ps
   | None -> Printf.printf "Clock period unavailable\n"
 
 let print_mtime c =

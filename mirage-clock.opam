@@ -1,19 +1,28 @@
-opam-version: "1.2"
-authors:      ["Anil Madhavapeddy" "Daniel C. Bünzli" "Matthew Gray"]
-maintainer:   "anil@recoil.org"
-homepage:     "https://github.com/mirage/mirage-clock"
-bug-reports:  "https://github.com/mirage/mirage-clock/issues"
-dev-repo:     "https://github.com/mirage/mirage-clock.git"
-doc:          "https://mirage.github.io/mirage-clock/"
-license:      "ISC"
-tags:         ["org:mirage"]
+opam-version: "2.0"
+maintainer: "anil@recoil.org"
+authors: ["Anil Madhavapeddy" "Daniel C. Bünzli" "Matthew Gray"]
+license: "ISC"
+tags: "org:mirage"
+homepage: "https://github.com/mirage/mirage-clock"
+doc: "https://mirage.github.io/mirage-clock/"
+bug-reports: "https://github.com/mirage/mirage-clock/issues"
+synopsis: "Libraries and module types for portable clocks"
+description: """
+This library implements portable support for an operating system timesource
+that is compatible with the [MirageOS](https://mirage.io) library interfaces
+found in: <https://github.com/mirage/mirage>
 
+It implements an `MCLOCK` module that represents a monotonic timesource
+since an arbitrary point, and `PCLOCK` which counts time since the Unix
+epoch.
+"""
 depends: [
-  "jbuilder" {build & >="1.0+beta9"}
+  "ocaml" {>= "4.04.2"}
+  "dune" {build}
   "mirage-device" {>= "1.0.0"}
 ]
 build: [
-  [ "jbuilder" "subst" ] {pinned}
-  [ "jbuilder" "build" "-p" name "-j" jobs ]
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
 ]
-available: [ ocaml-version >= "4.04.2" ]
+dev-repo: "git+https://github.com/mirage/mirage-clock.git"

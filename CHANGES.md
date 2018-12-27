@@ -1,3 +1,17 @@
+### v2.0.0
+
+* Constrain the clock type `t` to `unit` to improve compatability with
+  the webmachine CLOCK interface. All current implementations satisfy
+  this interface so there shouldn't be an issue, but bumping the
+  library major version number to reflect the interface change (#38 @hannesm)
+
+* Port library to Dune from jbuilder and use `dune-release` and the builtin
+  `dune.configurator` to reduce the build dependency cone (@avsm).
+
+* Remove unused variable warnings (@avsm).
+
+* Update opam package metadata to 2.0 format (@avsm).
+
 ### v1.4.1 (2018-08-03)
 
 * mirage-clock-unix: fix integer overflow on 32 bit (#37, @mattgray)

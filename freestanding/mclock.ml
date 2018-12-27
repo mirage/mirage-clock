@@ -16,7 +16,6 @@
 
 type t = unit
 type 'a io = 'a Lwt.t
-type error = unit
 
 let connect _ = Lwt.return_unit
 let disconnect _t = Lwt.return_unit

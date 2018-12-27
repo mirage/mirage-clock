@@ -15,7 +15,7 @@
  *)
 type t = unit
 type 'a io = 'a Lwt.t
-type error = unit
+type _error = unit
 
 external _elapsed_ns : unit -> int64 = "ocaml_monotonic_clock_elapsed_ns"
 
