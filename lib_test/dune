@@ -1,0 +1,3 @@
+(test
+ (name portable)
+ (libraries lwt.unix mirage-clock-unix))

@@ -16,7 +16,6 @@
 
 type t = unit
 type 'a io = 'a Lwt.t
-type error = unit
 
 external time : unit -> float = "unix_gettimeofday"
 
@@ -28,7 +27,7 @@ let connect _ = Lwt.return_unit
 let disconnect _t = Lwt.return_unit
 
 (* Based on Ptime.of_float_s *)
-let now_d_ps t =
+let now_d_ps () =
   let secs = time () in
   if secs <> secs then failwith "unix_gettimeofday returned NaN" else
   let days = floor (secs /. 86_400.) in
@@ -42,10 +41,10 @@ let now_d_ps t =
   let frac_ps = Int64.(of_float (frac_s *. 1e12)) in
   (int_of_float days, (Int64.add rem_ps frac_ps))
 
-let current_tz_offset_s t = None
+let current_tz_offset_s () = None
 
 (* According to
  * https://github.com/mirage/mini-os/blob/edfd5aae6ec5ba7d0a8834a3e9dfe5e69424150a/arch/x86/time.c#L194
  * the clock period is 1 microsecond
  * *)
-let period_d_ps t = Some (0, 1_000_000L)
+let period_d_ps () = Some (0, 1_000_000L)
