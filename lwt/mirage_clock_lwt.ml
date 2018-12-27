@@ -13,7 +13,8 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
-(** {1 Clock devices for MirageOS devices, using lwt}
+
+(** Clock devices for MirageOS devices using Lwt
 
     {e Release %%VERSION%% } *)
 

@@ -14,7 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
-(** {1 Monotonic clock}
+(** Monotonic clock for MirageOS using paravirtual interfaces
 
     Clock returning monotonic time since an arbitrary point. To be
     used for eg. profiling. *)

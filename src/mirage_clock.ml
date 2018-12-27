@@ -13,13 +13,13 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
-(** {1 Clock devices for MirageOS}
+(** Clock devices for MirageOS
 
     This module define clock devices signatures for MirageOS.
 
     {e Release %%VERSION%% } *)
 
-(** {1 POSIX clock}
+(** {2 POSIX clock}
 
     Clock counting time since the Unix epoch. Subject to adjustment by
     e.g. NTP. *)
@@ -45,7 +45,7 @@ module type PCLOCK = sig
 
 end
 
-(** {1 Monotonic clock}
+(** {2 Monotonic clock}
 
     Clock returning monotonic time since an arbitrary point. To be
     used for eg. profiling. *)

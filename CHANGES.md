@@ -1,4 +1,4 @@
-### v2.0.0
+### v2.0.0 (2017-12-27)
 
 * Constrain the clock type `t` to `unit` to improve compatability with
   the webmachine CLOCK interface. All current implementations satisfy
@@ -6,11 +6,13 @@
   library major version number to reflect the interface change (#38 @hannesm)
 
 * Port library to Dune from jbuilder and use `dune-release` and the builtin
-  `dune.configurator` to reduce the build dependency cone (@avsm).
+  `dune.configurator` to reduce the build dependency cone (#39 @avsm).
 
-* Remove unused variable warnings (@avsm).
+* Remove unused variable warnings (#39 @avsm).
 
-* Update opam package metadata to 2.0 format (@avsm).
+* Update opam package metadata to 2.0 format (#39 @avsm).
+
+* Fixes to the ocamldoc comment headers for odoc compatibility (@avsm)
 
 ### v1.4.1 (2018-08-03)
 
