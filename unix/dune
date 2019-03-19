@@ -2,7 +2,7 @@
  (name        mirage_clock_unix)
  (wrapped     false)
  (public_name mirage-clock-unix)
- (libraries   mirage-clock mirage-clock-lwt)
+ (libraries   mirage-clock mirage-clock-lwt unix)
  (c_names     clock_stubs)
  (c_flags ((:standard \ -Wall -g -O2)))
  (c_library_flags (:standard (:include ../config/cclib.sexp))))
