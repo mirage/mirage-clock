@@ -28,7 +28,7 @@ module type PCLOCK = sig
   include Mirage_device.S with type t = unit
 
   val now_d_ps : t -> int * int64
-  (** [now_d_ps ()] is [(d, ps)] representing the POSIX time occuring
+  (** [now_d_ps ()] is [(d, ps)] representing the POSIX time occurring
       at [d] * 86'400e12 + [ps] POSIX picoseconds from the epoch
       1970-01-01 00:00:00 UTC. [ps] is in the range
       \[[0];[86_399_999_999_999_999L]\]. *)
@@ -48,7 +48,7 @@ end
 (** {2 Monotonic clock}
 
     Clock returning monotonic time since an arbitrary point. To be
-    used for eg. profiling. *)
+    used for e.g. profiling. *)
 module type MCLOCK = sig
 
   include Mirage_device.S with type t = unit
