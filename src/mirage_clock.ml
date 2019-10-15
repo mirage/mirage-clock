@@ -25,20 +25,18 @@
     e.g. NTP. *)
 module type PCLOCK = sig
 
-  include Mirage_device.S with type t = unit
-
-  val now_d_ps : t -> int * int64
+  val now_d_ps : unit -> int * int64
   (** [now_d_ps ()] is [(d, ps)] representing the POSIX time occurring
       at [d] * 86'400e12 + [ps] POSIX picoseconds from the epoch
       1970-01-01 00:00:00 UTC. [ps] is in the range
       \[[0];[86_399_999_999_999_999L]\]. *)
 
-  val current_tz_offset_s : t -> int option
+  val current_tz_offset_s : unit -> int option
   (** [current_tz_offset_s ()] is the clock's current local time zone
       offset to UTC in seconds, if known. This is the duration local
       time - UTC time in seconds. *)
 
-  val period_d_ps : t -> (int * int64) option
+  val period_d_ps : unit -> (int * int64) option
   (** [period_d_ps ()] is [Some (d, ps)] representing the clock's
       picosecond period [d] * 86'400e12 + [ps], if known. [ps] is in
       the range \[[0];[86_399_999_999_999_999L]\]. *)
@@ -51,13 +49,11 @@ end
     used for e.g. profiling. *)
 module type MCLOCK = sig
 
-  include Mirage_device.S with type t = unit
-
-  val elapsed_ns : t -> int64
+  val elapsed_ns : unit -> int64
   (** [elapsed_ns ()] is a monotonically increasing count of
       nanoseconds elapsed since some arbitrary point *)
 
-  val period_ns : t -> int64 option
+  val period_ns : unit -> int64 option
   (** [period_ns ()] is [Some ns] representing the clock's nanosecond
       period [ns], if known *)
 

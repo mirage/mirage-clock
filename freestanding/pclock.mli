@@ -19,5 +19,4 @@
     Clock counting time since the Unix epoch. Subject to adjustment by
     e.g. NTP. *)
 
-include Mirage_clock_lwt.PCLOCK
-val connect : unit -> t Lwt.t
+include Mirage_clock.PCLOCK

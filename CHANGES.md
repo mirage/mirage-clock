@@ -1,3 +1,8 @@
+### v3.0.0
+
+* remove mirage-clock-lwt
+* mirage-clock is no device anymore, drop lwt dependency
+
 ### v2.0.0 (2017-12-27)
 
 * Constrain the clock type `t` to `unit` to improve compatability with

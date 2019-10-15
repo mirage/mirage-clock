@@ -1,5 +1,3 @@
-let (>>=) = Lwt.bind
-
 let print_time c =
   let d, ps = Pclock.now_d_ps c in
   Printf.printf "The time is %d days and %Ld picoseconds since the epoch.\n" d ps
@@ -19,17 +17,12 @@ let print_period_mono c = match Mclock.period_ns c with
   | Some ns -> Printf.printf "The monotonic clock period is: %Ld nanoseconds\n" ns
   | None -> Printf.printf "Monotonic clock period unavailable\n"
 
-let main () =
-  Mclock.connect () >>= fun mclock ->
-  Pclock.connect () >>= fun clock ->
-  print_mtime mclock;
-  print_time clock;
-  print_time clock;
-  print_time clock;
-  print_offset clock;
-  print_period clock;
-  print_mtime mclock;
-  print_period_mono mclock;
-  Lwt.return_unit
-
-let _ = Lwt_main.run (main ())
+let () =
+  print_mtime ();
+  print_time ();
+  print_time ();
+  print_time ();
+  print_offset ();
+  print_period ();
+  print_mtime ();
+  print_period_mono ()
