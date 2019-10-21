@@ -1,9 +1,10 @@
-### v3.0.0
+### v3.0.0 (2019-10-21)
 
-* remove mirage-clock-lwt
-* mirage-clock is no device anymore, drop lwt dependency
+* remove mirage-clock-lwt (#43 @hannesm)
+* mirage-clock is no device anymore, drop lwt dependency (#43 @hannesm)
+* raise lower OCaml bound to 4.06.0 (#43 @hannesm)
 
-### v2.0.0 (2017-12-27)
+### v2.0.0 (2018-12-27)
 
 * Constrain the clock type `t` to `unit` to improve compatability with
   the webmachine CLOCK interface. All current implementations satisfy
