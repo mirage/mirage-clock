@@ -14,13 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
-type t = unit
-type 'a io = 'a Lwt.t
+external elapsed_ns : unit -> int64 = "ocaml_monotonic_clock_elapsed_ns"
 
-external _elapsed_ns : unit -> int64 = "ocaml_monotonic_clock_elapsed_ns"
-
-let connect _ = Lwt.return_unit
-let disconnect _t = Lwt.return_unit
-
-let elapsed_ns _ = _elapsed_ns ()
+let elapsed_ns _ = elapsed_ns ()
 let period_ns _ = None

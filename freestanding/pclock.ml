@@ -14,17 +14,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
-type t = unit
-type 'a io = 'a Lwt.t
-
 external time : unit -> float = "unix_gettimeofday"
 
 let min_int_float = float min_int
 let max_int_float = float max_int
 let ps_count_in_s = 1_000_000_000_000L
-
-let connect _ = Lwt.return_unit
-let disconnect _t = Lwt.return_unit
 
 (* Based on Ptime.of_float_s *)
 let now_d_ps () =

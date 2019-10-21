@@ -5,8 +5,8 @@ environment:
   FORK_USER: ocaml
   FORK_BRANCH: master
   CYG_ROOT: C:\cygwin64
-  OPAM_SWITCH: 4.04.2+mingw64c
-  PINS: "mirage-clock.dev:. mirage-clock-lwt.dev:."
+  OPAM_SWITCH: 4.06.0+mingw64c
+  PINS: "mirage-clock.dev:. mirage-clock-unix.dev:."
   PACKAGE: "mirage-clock-unix"
 
 install:

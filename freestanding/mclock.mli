@@ -19,5 +19,4 @@
     Clock returning monotonic time since an arbitrary point. To be
     used for eg. profiling. *)
 
-include Mirage_clock_lwt.MCLOCK
-val connect : unit -> t Lwt.t
+include Mirage_clock.MCLOCK

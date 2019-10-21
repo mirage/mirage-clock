@@ -5,14 +5,16 @@ script: bash -ex .travis-opam.sh
 sudo: required
 env:
   global:
-    - PINS="mirage-clock:. mirage-clock-lwt:. mirage-clock-unix:. mirage-clock-freestanding:."
+    - PINS="mirage-clock:. mirage-clock-unix:. mirage-clock-freestanding:."
 matrix:
   include:
   - os: linux
-    env: OCAML_VERSION=4.04 PACKAGE="mirage-clock-freestanding"
+    env: OCAML_VERSION=4.06 PACKAGE="mirage-clock-freestanding"
   - os: linux
-    env: OCAML_VERSION=4.05 PACKAGE="mirage-clock-freestanding"
+    env: OCAML_VERSION=4.07 PACKAGE="mirage-clock-freestanding"
   - os: linux
-    env: OCAML_VERSION=4.06 PACKAGE="mirage-clock-unix"
+    env: OCAML_VERSION=4.08 PACKAGE="mirage-clock-unix"
+  - os: linux
+    env: OCAML_VERSION=4.09 PACKAGE="mirage-clock-unix"
   - os: osx
     env: OCAML_VERSION=4.06 PACKAGE="mirage-clock-unix"

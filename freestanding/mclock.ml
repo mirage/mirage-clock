@@ -14,11 +14,5 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
-type t = unit
-type 'a io = 'a Lwt.t
-
-let connect _ = Lwt.return_unit
-let disconnect _t = Lwt.return_unit
-
 external elapsed_ns : unit -> int64 = "caml_get_monotonic_time"
 let period_ns () = None

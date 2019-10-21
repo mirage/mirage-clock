@@ -15,15 +15,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
-type t = unit
-type 'a io = 'a Lwt.t
-
 let ps_count_in_s = 1_000_000_000_000L
 
 external posix_clock_gettime_s_ns : unit -> int64 * int64 = "ocaml_posix_clock_gettime_s_ns"
-
-let connect _ = Lwt.return_unit
-let disconnect _t = Lwt.return_unit
 
 let now_d_ps () =
   let secs, ns = posix_clock_gettime_s_ns () in
