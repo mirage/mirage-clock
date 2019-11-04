@@ -1,3 +1,4 @@
 (library
  (name        mirage_clock)
- (public_name mirage-clock))
+ (public_name mirage-clock)
+ (wrapped false))
