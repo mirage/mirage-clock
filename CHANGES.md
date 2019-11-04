@@ -1,3 +1,7 @@
+### v3.0.1 (2019-11-04)
+
+* provide deprecated Mirage_clock_lwt for smooth transition (#44 @hannesm)
+
 ### v3.0.0 (2019-10-21)
 
 * remove mirage-clock-lwt (#43 @hannesm)
