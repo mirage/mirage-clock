@@ -4,5 +4,4 @@
 
 (rule
  (targets cclib.sexp)
- (deps    discover.exe)
  (action  (run ./discover.exe)))
