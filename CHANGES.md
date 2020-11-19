@@ -1,3 +1,9 @@
+### v3.1.0 (2020-11-19)
+
+* Use implicit executable dependency for discover.exe
+  into the dune file (#46 @TheLortex)
+* Fix cross-compilation on Android (#45 @EduardoRFS)
+
 ### v3.0.1 (2019-11-04)
 
 * provide deprecated Mirage_clock_lwt for smooth transition (#44 @hannesm)
