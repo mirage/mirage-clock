@@ -13,13 +13,13 @@ The Unix implementation of the MirageOS Clock interface uses
 which OS is in use (see [clock_stubs.c](https://github.com/mirage/mirage-clock/blob/master/unix/clock_stubs.c)).
 """
 depends: [
-  "ocaml" {>= "4.06.0"}
+  "ocaml" {>= "4.08.0"}
   "dune"
   "dune-configurator"
   "mirage-clock" {= version}
 ]
 build: [
-  ["dune" "subst"] {pinned}
+  ["dune" "subst"] {dev}
   ["dune" "build" "-p" name "-j" jobs]
   ["dune" "runtest" "-p" name] {with-test}
 ]

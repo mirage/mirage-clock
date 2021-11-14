@@ -1,3 +1,9 @@
+### v4.0.0
+
+* Remove Mirage_clock_lwt module
+* Use caml_get_wall_clock instead of unix_gettime to avoid floating point
+  conversion roundtrip (#47 @hannesm)
+
 ### v3.1.0 (2020-11-19)
 
 * Use implicit executable dependency for discover.exe

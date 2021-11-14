@@ -14,7 +14,7 @@ include the [Solo5](https://github.com/solo5/solo5) backend of
 MirageOS.
 """
 depends: [
-  "ocaml" {>= "4.06.0"}
+  "ocaml" {>= "4.08.0"}
   "dune"
   "mirage-clock" {= version}
 ]
@@ -23,7 +23,7 @@ conflicts: [
   "mirage-xen" {<= "6.0.0"}
 ]
 build: [
-  ["dune" "subst"] {pinned}
+  ["dune" "subst"] {dev}
   ["dune" "build" "-p" name "-j" jobs]
 ]
 dev-repo: "git://github.com/mirage/mirage-clock"
