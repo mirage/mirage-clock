@@ -1,6 +1,6 @@
-### v4.0.0
+### v4.0.0 (2021-11-15)
 
-* Remove Mirage_clock_lwt module
+* Remove Mirage_clock_lwt module (#48 @hannesm)
 * Use caml_get_wall_clock instead of unix_gettime to avoid floating point
   conversion roundtrip (#47 @hannesm)
 
