@@ -19,8 +19,8 @@ depends: [
   "mirage-clock" {= version}
 ]
 conflicts: [
-  "mirage-solo5" {<= "0.6.4"}
-  "mirage-xen" {<= "6.0.0"}
+  "mirage-solo5" {< "0.7.0"}
+  "mirage-xen" {< "7.0.0"}
 ]
 build: [
   ["dune" "subst"] {dev}

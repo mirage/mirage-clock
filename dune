@@ -1,0 +1,17 @@
+; Enable build only in the freestanding context.
+
+(alias
+ (name default)
+ (enabled_if
+  (= %{context_name} "default"))
+ (deps
+  (alias_rec src/all)
+  (alias_rec unix/all)
+  (alias_rec lib_test/all)))
+
+(alias
+ (name default)
+ (enabled_if
+  (= %{context_name} "freestanding"))
+ (deps
+  (alias_rec freestanding/all)))

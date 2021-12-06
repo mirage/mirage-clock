@@ -2,4 +2,7 @@
  (name        mirage_clock_freestanding)
  (wrapped     false)
  (public_name mirage-clock-freestanding)
- (libraries   mirage-clock))
+ (libraries   mirage-clock)
+ (foreign_stubs
+  (language c)
+  (names freestanding_clock_stubs)))
