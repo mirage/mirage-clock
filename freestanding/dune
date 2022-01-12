@@ -5,4 +5,9 @@
  (libraries   mirage-clock)
  (foreign_stubs
   (language c)
-  (names freestanding_clock_stubs)))
+  (names clock_stubs)))
+
+(rule
+ (target clock_stubs.c)
+ (deps clock_stubs.freestanding.c clock_stubs.default.c)
+ (action (copy clock_stubs.%{context_name}.c %{target})))
