@@ -1,2 +1,2 @@
-(lang dune 1.0)
+(lang dune 2.8)
 (name mirage-clock)
