@@ -3,3 +3,4 @@ _build
 .merlin
 duniverse
 *.locked
+_esy
