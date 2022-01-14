@@ -9,5 +9,14 @@
 
 (rule
  (target clock_stubs.c)
- (deps clock_stubs.freestanding.c clock_stubs.default.c)
- (action (copy clock_stubs.%{context_name}.c %{target})))
+ (enabled_if
+  (<> %{context_name} "freestanding"))
+ (deps (:src clock_stubs.default.c))
+ (action (copy %{src} %{target})))
+
+(rule
+ (target clock_stubs.c)
+ (enabled_if
+  (= %{context_name} "freestanding"))
+ (deps (:src clock_stubs.freestanding.c))
+ (action (copy %{src} %{target})))
