@@ -3,7 +3,7 @@
 (alias
  (name default)
  (enabled_if
-  (= %{context_name} "default"))
+  (<> %{context_name} "freestanding"))
  (deps
   (alias_rec src/all)
   (alias_rec unix/all)
