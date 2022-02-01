@@ -14,7 +14,7 @@ which OS is in use (see [clock_stubs.c](https://github.com/mirage/mirage-clock/b
 """
 depends: [
   "ocaml" {>= "4.08.0"}
-  "dune"
+  "dune" {>= "2.8"}
   "dune-configurator"
   "mirage-clock" {= version}
 ]
