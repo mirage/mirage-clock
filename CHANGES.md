@@ -1,3 +1,7 @@
+### v4.1.0 (2022-02-01)
+
+* Be able to build & instal the distribution via `opam` without the expected `dune`'s context (@TheLortex, @dinosaure, #49)
+
 ### v4.0.0 (2021-11-15)
 
 * Remove Mirage_clock_lwt module (#48 @hannesm)
