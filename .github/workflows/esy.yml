@@ -31,13 +31,13 @@ jobs:
               "ocaml": "4.12.x",
               "@opam/mirage-clock": "*",
               "@opam/mirage-clock-unix": "*",
-              "@opam/mirage-clock-freestanding": "*",
+              "@opam/mirage-clock-solo5": "*",
               "reason-mobile": "github:EduardoRFS/reason-mobile:generate.json#7ba258319b87943d2eb0d8fb84562d0afeb2d41f"
             },
             "resolutions": {
               "@opam/mirage-clock": "./mirage-clock.opam",
               "@opam/mirage-clock-unix": "./mirage-clock-unix.opam",
-              "@opam/mirage-clock-freestanding": "./mirage-clock-freestanding.opam"
+              "@opam/mirage-clock-solo5": "./mirage-clock-solo5.opam"
             }
           }' > esy.json
 
@@ -96,13 +96,13 @@ jobs:
               "ocaml": "4.12.x",
               "@opam/mirage-clock": "*",
               "@opam/mirage-clock-unix": "*",
-              "@opam/mirage-clock-freestanding": "*",
+              "@opam/mirage-clock-solo5": "*",
               "reason-mobile": "github:EduardoRFS/reason-mobile:generate.json#7ba258319b87943d2eb0d8fb84562d0afeb2d41f"
             },
             "resolutions": {
               "@opam/mirage-clock": "./mirage-clock.opam",
               "@opam/mirage-clock-unix": "./mirage-clock-unix.opam",
-              "@opam/mirage-clock-freestanding": "./mirage-clock-freestanding.opam"
+              "@opam/mirage-clock-solo5": "./mirage-clock-solo5.opam"
             }
           }' > esy.json
 

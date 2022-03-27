@@ -1,7 +1,7 @@
 (library
- (name        mirage_clock_freestanding)
+ (name        mirage_clock_solo5)
  (wrapped     false)
- (public_name mirage-clock-freestanding)
+ (public_name mirage-clock-solo5)
  (libraries   mirage-clock)
  (foreign_stubs
   (language c)
@@ -10,13 +10,13 @@
 (rule
  (target clock_stubs.c)
  (enabled_if
-  (<> %{context_name} "freestanding"))
+  (<> %{context_name} "solo5"))
  (deps (:src clock_stubs.default.c))
  (action (copy %{src} %{target})))
 
 (rule
  (target clock_stubs.c)
  (enabled_if
-  (= %{context_name} "freestanding"))
- (deps (:src clock_stubs.freestanding.c))
+  (= %{context_name} "solo5"))
+ (deps (:src clock_stubs.solo5.c))
  (action (copy %{src} %{target})))
