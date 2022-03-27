@@ -1,4 +1,3 @@
-
 (*
  * Copyright (c) 2015 Matt Gray <matthew.thomas.gray@gmail.com>
  *
@@ -17,7 +16,8 @@
 
 let ps_count_in_s = 1_000_000_000_000L
 
-external posix_clock_gettime_s_ns : unit -> int64 * int64 = "ocaml_posix_clock_gettime_s_ns"
+external posix_clock_gettime_s_ns : unit -> int64 * int64
+  = "ocaml_posix_clock_gettime_s_ns"
 
 let now_d_ps () =
   let secs, ns = posix_clock_gettime_s_ns () in
@@ -25,7 +25,7 @@ let now_d_ps () =
   let rem_s = Int64.rem secs 86_400L in
   let frac_ps = Int64.mul ns 1000L in
   let rem_ps = Int64.mul rem_s ps_count_in_s in
-  (Int64.to_int days, (Int64.add rem_ps frac_ps))
+  (Int64.to_int days, Int64.add rem_ps frac_ps)
 
 let current_tz_offset_s () =
   let now = Unix.gettimeofday () in
@@ -33,23 +33,21 @@ let current_tz_offset_s () =
   let local = Unix.localtime now in
   let d_day = local.Unix.tm_yday - utc.Unix.tm_yday in
   let d_hour = local.Unix.tm_hour - utc.Unix.tm_hour in
-  let d_min = d_hour * 60 + (local.Unix.tm_min - utc.Unix.tm_min) in
+  let d_min = (d_hour * 60) + (local.Unix.tm_min - utc.Unix.tm_min) in
   let min_per_day = 24 * 60 in
   let d_min =
     match d_day with
-      | 0 -> d_min (* same day *)
-      (* day wrapped *)
-      | 1 -> d_min + min_per_day
-      | -1 -> d_min - min_per_day
-      (* year wrapped *)
-      | _ -> if d_min < -1 then d_min + min_per_day else d_min - min_per_day
-    in
+    | 0 -> d_min (* same day *)
+    (* day wrapped *)
+    | 1 -> d_min + min_per_day
+    | -1 -> d_min - min_per_day
+    (* year wrapped *)
+    | _ -> if d_min < -1 then d_min + min_per_day else d_min - min_per_day
+  in
   Some (d_min * 60)
 
 external posix_clock_period_ns : unit -> int64 = "ocaml_posix_clock_period_ns"
 
 let period_d_ps () =
   let period_ns = posix_clock_period_ns () in
-  match period_ns with
-    | 0L -> None
-    | ns -> Some (0, Int64.mul ns 1000L)
+  match period_ns with 0L -> None | ns -> Some (0, Int64.mul ns 1000L)

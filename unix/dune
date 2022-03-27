@@ -1,10 +1,13 @@
 (library
- (name        mirage_clock_unix)
- (wrapped     false)
+ (name mirage_clock_unix)
+ (wrapped false)
  (public_name mirage-clock-unix)
- (libraries   mirage-clock unix)
+ (libraries mirage-clock unix)
  (foreign_stubs
   (language c)
-  (flags (:standard \ -Wall -g -O2))
+  (flags
+   (:standard \ -Wall -g -O2))
   (names clock_stubs))
- (c_library_flags (:standard (:include ../config/cclib.sexp))))
+ (c_library_flags
+  (:standard
+   (:include ../config/cclib.sexp))))

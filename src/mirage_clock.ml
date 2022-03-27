@@ -17,44 +17,38 @@
 
     This module define clock devices signatures for MirageOS.
 
-    {e Release %%VERSION%% } *)
+    {e Release %%VERSION%%} *)
 
 (** {2 POSIX clock}
 
-    Clock counting time since the Unix epoch. Subject to adjustment by
-    e.g. NTP. *)
+    Clock counting time since the Unix epoch. Subject to adjustment by e.g. NTP. *)
 module type PCLOCK = sig
-
   val now_d_ps : unit -> int * int64
-  (** [now_d_ps ()] is [(d, ps)] representing the POSIX time occurring
-      at [d] * 86'400e12 + [ps] POSIX picoseconds from the epoch
-      1970-01-01 00:00:00 UTC. [ps] is in the range
-      \[[0];[86_399_999_999_999_999L]\]. *)
+  (** [now_d_ps ()] is [(d, ps)] representing the POSIX time occurring at [d] *
+      86'400e12 + [ps] POSIX picoseconds from the epoch 1970-01-01 00:00:00 UTC.
+      [ps] is in the range \[[0];[86_399_999_999_999_999L]\]. *)
 
   val current_tz_offset_s : unit -> int option
-  (** [current_tz_offset_s ()] is the clock's current local time zone
-      offset to UTC in seconds, if known. This is the duration local
-      time - UTC time in seconds. *)
+  (** [current_tz_offset_s ()] is the clock's current local time zone offset to
+      UTC in seconds, if known. This is the duration local time - UTC time in
+      seconds. *)
 
   val period_d_ps : unit -> (int * int64) option
-  (** [period_d_ps ()] is [Some (d, ps)] representing the clock's
-      picosecond period [d] * 86'400e12 + [ps], if known. [ps] is in
-      the range \[[0];[86_399_999_999_999_999L]\]. *)
-
+  (** [period_d_ps ()] is [Some (d, ps)] representing the clock's picosecond
+      period [d] * 86'400e12 + [ps], if known. [ps] is in the range
+      \[[0];[86_399_999_999_999_999L]\]. *)
 end
 
 (** {2 Monotonic clock}
 
-    Clock returning monotonic time since an arbitrary point. To be
-    used for e.g. profiling. *)
+    Clock returning monotonic time since an arbitrary point. To be used for e.g.
+    profiling. *)
 module type MCLOCK = sig
-
   val elapsed_ns : unit -> int64
-  (** [elapsed_ns ()] is a monotonically increasing count of
-      nanoseconds elapsed since some arbitrary point *)
+  (** [elapsed_ns ()] is a monotonically increasing count of nanoseconds elapsed
+      since some arbitrary point *)
 
   val period_ns : unit -> int64 option
-  (** [period_ns ()] is [Some ns] representing the clock's nanosecond
-      period [ns], if known *)
-
+  (** [period_ns ()] is [Some ns] representing the clock's nanosecond period
+      [ns], if known *)
 end
