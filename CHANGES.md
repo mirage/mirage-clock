@@ -1,3 +1,8 @@
+### v4.2.0 (2022-03-27)
+
+* Rename the freestanding toolchain to solo5 (@dinosaure, #51)
+* Use ocamlformat (@samoht, #54)
+
 ### v4.1.0 (2022-02-01)
 
 * Be able to build & instal the distribution via `opam` without the expected `dune`'s context (@TheLortex, @dinosaure, #49)
