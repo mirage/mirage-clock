@@ -14,6 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
- (* C stub implemented in mirage-solo5 *)
+(* C stub implemented in mirage-solo5 *)
 external elapsed_ns : unit -> int64 = "caml_get_monotonic_time"
+
 let period_ns () = None

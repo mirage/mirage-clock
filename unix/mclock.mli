@@ -14,8 +14,8 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
+include Mirage_clock.MCLOCK
 (** Monotonic clock for Unix using MirageOS interfaces
 
-    Clock returning monotonic time since an arbitrary point. To be
-    used for eg. profiling. *)
-include Mirage_clock.MCLOCK
+    Clock returning monotonic time since an arbitrary point. To be used for eg.
+    profiling. *)

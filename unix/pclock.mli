@@ -14,8 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
+include Mirage_clock.PCLOCK
 (** POSIX clock for MirageOS using Unix interfaces
 
-    Clock counting time since the Unix epoch. Subject to adjustment by
-    e.g. NTP. *)
-include Mirage_clock.PCLOCK
+    Clock counting time since the Unix epoch. Subject to adjustment by e.g. NTP. *)
