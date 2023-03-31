@@ -14,17 +14,34 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
-external time : unit -> int64 = "caml_get_wall_clock"
+external time : unit -> int64 = "caml_get_monotonic_time"
+external hypercall_wall_clock : unit -> int64 = "caml_get_wall_clock"
 
 let nsec_per_day = Int64.mul 86_400L 1_000_000_000L
 let ps_per_ns = 1_000L
 
-let now_d_ps () =
-  let nsec = time () in
+let offset =
+  (* XXX: put this in connect? *)
+  let m = time () in
+  let w = hypercall_wall_clock () in
+  ref (Int64.sub w m)
+
+let refresh () =
+  let m = time () in
+  let w = hypercall_wall_clock () in
+  offset := Int64.sub w m
+
+let ns_to_d_ps nsec =
   let days = Int64.div nsec nsec_per_day in
   let rem_ns = Int64.rem nsec nsec_per_day in
   let rem_ps = Int64.mul rem_ns ps_per_ns in
   (Int64.to_int days, rem_ps)
+
+let now_d_ps () =
+  let nsec = Int64.add (time ()) !offset  in
+  ns_to_d_ps nsec
+
+let hypercall_wall_clock () = ns_to_d_ps (hypercall_wall_clock ())
 
 let current_tz_offset_s () = None
 

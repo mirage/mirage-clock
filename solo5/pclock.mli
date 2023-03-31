@@ -19,3 +19,12 @@
     Clock counting time since the Unix epoch. Subject to adjustment by e.g. NTP. *)
 
 include Mirage_clock.PCLOCK
+
+val hypercall_wall_clock : unit -> int * int64
+(** [hypercall_wall_clock ()] is the current wall clock time according to the
+    hypervisor. This involves a hypercall and is slower than [now_d_ps ()], but
+    may be more accurate. *)
+
+val refresh : unit -> unit
+(** [refresh ()] does a hypercall to get the wall clock time according to the
+    host and updates the internal offset. *)
